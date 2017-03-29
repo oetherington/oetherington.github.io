@@ -7,6 +7,6 @@
 
 # TECHNOLOGY COLOPHON
 
-    CSS3, HTML5
-    HTML5 Boilerplate, Apache Server Configs, jQuery, Modernizr, Normalize.css
-    jsPDF, Google WebFontLoader, RequireJS, Ace editor/syntax highlighter
+    CSS3, HTML5, HTML5 Boilerplate, jQuery, Bootstrap, Google WebFonts,
+    slick.js, font awesome, Google recaptcha, html5shiv.js, respond.js,
+    jquery.easing.js, bootstrapValidator.js, email.js, lazyload.js
