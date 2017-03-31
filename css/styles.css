@@ -223,11 +223,6 @@ ul.list-social li.social-instagram a:hover {
 	.small-screen-image { display: block; }
 }
 
-@media (max-width: 600px) {
-	.carousel { display: none; }
-	.small-screen-image { display: none; }
-}
-
 /* FOOTER */
 footer {
 	background-color: #222222;
