@@ -170,10 +170,10 @@ ul.list-social {
 
 ul.list-social li a {
 	display: block;
-	height: 80px;
-	width: 80px;
-	line-height: 80px;
-	font-size: 40px;
+	height: 60px;
+	width: 60px;
+	line-height: 60px;
+	font-size: 30px;
 	border-radius: 100%;
 	color: white;
 	-webkit-transition: all 0.35s;
@@ -181,29 +181,16 @@ ul.list-social li a {
 	transition: all 0.35s;
 }
 
-ul.list-social li.social-twitter a {
-	background-color: #1da1f2;
-}
-
-ul.list-social li.social-twitter a:hover {
-	background-color: #0488d9;
-}
-
-ul.list-social li.social-facebook a {
-	background-color: #3b5998;
-}
-
-ul.list-social li.social-facebook a:hover {
-	background-color: #344e86;
-}
-
-ul.list-social li.social-instagram a {
-	background-color: #fb3958;
-}
-
-ul.list-social li.social-instagram a:hover {
-	background-color: #e2203f;
-}
+ul.list-social li.social-twitter a { background-color: #1da1f2; }
+ul.list-social li.social-twitter a:hover { background-color: #0488d9; }
+ul.list-social li.social-facebook a { background-color: #3b5998; }
+ul.list-social li.social-facebook a:hover { background-color: #344e86; }
+ul.list-social li.social-instagram a { background-color: #fb3958; }
+ul.list-social li.social-instagram a:hover { background-color: #e2203f; }
+ul.list-social li.social-soundcloud a { background-color: #ff6600; }
+ul.list-social li.social-soundcloud a:hover { background-color: #e64d00; }
+ul.list-social li.social-github a { background-color: #83c1db; }
+ul.list-social li.social-github a:hover { background-color: #69a7be; }
 
 /* CAROUSEL */
 .carousel div { overflow: hidden; }
