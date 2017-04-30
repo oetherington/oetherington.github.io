@@ -1,4 +1,4 @@
-/* GLOBAL NAVBAR STYLES */
+/* GLOBAL NAVBAR */
 nav {
 	height: 50px;
 	font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif';
@@ -35,7 +35,7 @@ nav {
 	background-color: transparent;
 }
 
-/* TOP NAVBAR STYLES */
+/* TOP NAVBAR */
 .affix-top {
 	background-color: transparent;
 	border-color: transparent;
@@ -48,7 +48,7 @@ nav {
 	color: #fff;
 }
 
-/* MAIN NAVBAR STYLES */
+/* MAIN NAVBAR */
 .affix {
 	background-color: #fff;
 	border-color: #e7e7e7;
@@ -61,7 +61,7 @@ nav {
 	color: rgb(34, 34, 34);
 }
 
-/* NAVBAR TOGGLE MENU STYLES */
+/* NAVBAR TOGGLE MENU */
 @media (max-width: 768px) {
 	.affix-top button,
 	.affix-top button:focus {
@@ -87,7 +87,7 @@ nav {
 	}
 }
 
-/* GLOBAL CONTENT STYLES */
+/* GLOBAL CONTENT */
 body {
 	font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
 }
@@ -106,22 +106,18 @@ section a {
 
 .italic { font-style: italic; }
 
-/* INDIVIDUAL SECTION SPECIFICS */
+.top20 { margin-top: 20px; }
+
+/* INDIVIDUAL SECTIONS */
 #about {
-	/* padding: 90px 100px 100px 100px; */
 	background-color: #221e1d;
 	background: -webkit-linear-gradient(to bottom, #151110, #221e1d);
 	background: linear-gradient(to bottom, #151110, #221e1d);
 	color: #fff;
+	min-height: 100vh;
 }
 
-.carousel img {
-	display: none;
-}
-
-.slick-initialized img {
-	display: block;
-}
+.carousel-inner > .item > img { margin: 0 auto; }
 
 #media {
 	background: #fdcc52;
@@ -191,24 +187,6 @@ ul.list-social li.social-soundcloud a { background-color: #ff6600; }
 ul.list-social li.social-soundcloud a:hover { background-color: #e64d00; }
 ul.list-social li.social-github a { background-color: #83c1db; }
 ul.list-social li.social-github a:hover { background-color: #69a7be; }
-
-/* CAROUSEL */
-.carousel div { overflow: hidden; }
-.carousel img { margin: 0 auto; }
-.slick-prev:before { color: #fff; }
-.slick-next:before { color: #fff; }
-.slick-dots li button:before { color: #ddd; }
-.slick-dots li.slick-active button:before { color: #fff; }
-
-.small-screen-image {
-	display: none;
-	margin: 20px 0px;
-}
-
-@media (max-width: 800px) {
-	.carousel { display: none; }
-	.small-screen-image { display: block; }
-}
 
 /* FOOTER */
 footer {

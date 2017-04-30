@@ -10,56 +10,47 @@
     ];
     var length = methods.length;
     var console = (window.console = window.console || {});
-
     while (length--) {
         method = methods[length];
-
-        // Only stub undefined methods.
-        if (!console[method]) {
-            console[method] = noop;
-        }
+        if (!console[method]) console[method] = noop;
     }
 }());
 
-//  Setup the carousel
-//  This is outside of $(document).ready() to enable lazy loading
-$(".carousel").slick({
-	dots: true,
-	infinite: true,
-	fade: true,
-	lazyLoad: "progressive",
-	slidesToShow: 1,
-	slidesToScroll: 1,
-	autoplay: true,
-	autoplaySpeed: 3500,
-	centerMode: true
+// Setup lazyloading for the carousel
+$(function() {
+	return $(".carousel.lazy").on("slide.bs.carousel", function(ev) {
+		var lazy;
+		lazy = $(ev.relatedTarget).find("img[data-src]");
+		lazy.attr("src", lazy.data("src"));
+		lazy.removeAttr("data-src");
+	});
 });
 
 (function($) {
-    "use strict"; // Start of use strict
+    "use strict";
 
-    // jQuery for page scrolling feature - requires jQuery Easing plugin
-    $(document).on('click', 'a.page-scroll', function(event) {
+    // Page scrolling on click
+    $(document).on("click", "a.page-scroll", function(event) {
         var $anchor = $(this);
-        $('html, body').stop().animate({
-            scrollTop: ($($anchor.attr('href')).offset().top - 50)
-        }, 1250, 'easeInOutExpo');
+        $("html, body").stop().animate({
+            scrollTop: ($($anchor.attr("href")).offset().top - 50)
+        }, 1250, "easeInOutExpo");
         event.preventDefault();
     });
 
-    // Highlight the top nav as scrolling occurs
-	$('body').scrollspy({
-		target: '.navbar-fixed-top',
+    // Highlight the top nav on scroll
+	$("body").scrollspy({
+		target: ".navbar-fixed-top",
 		offset: 100
 	});
 
-    // Closes the Responsive Menu on Menu Item Click
-    $('.navbar-collapse ul li a').click(function() {
-        $('.navbar-toggle:visible').click();
+    // Close the responsive menu on menu item click
+    $(".navbar-collapse ul li a").click(function() {
+        $(".navbar-toggle:visible").click();
     });
 
-    // Offset for Main Navigation
-	$('#mainNav').affix({
+    // Offset for main nav
+	$("#mainNav").affix({
 		offset: {
 			top: 50
 		}
@@ -81,7 +72,7 @@ $(".carousel").slick({
 	// Init email API for contact form
 	emailjs.init("user_lcLubOKg8r0jVcldtyn7v");
 
-})(jQuery); // End of use strict
+})(jQuery);
 
 function recaptcha_cb() {
 	$("#submit-button").css({ "display": "inline-block" });
@@ -92,9 +83,9 @@ $(document).ready(function() {
 	$('#contact_form')
 		.bootstrapValidator({
 			feedbackIcons: {
-				valid: 'glyphicon glyphicon-ok',
-				invalid: 'glyphicon glyphicon-remove',
-				validating: 'glyphicon glyphicon-refresh'
+				valid: "glyphicon glyphicon-ok",
+				invalid: "glyphicon glyphicon-remove",
+				validating: "glyphicon glyphicon-refresh"
 			},
 			fields: {
 				name: {
@@ -103,24 +94,24 @@ $(document).ready(function() {
 							min: 2,
 						},
 						notEmpty: {
-							message: 'Please supply your name'
+							message: "Please supply your name"
 						}
 					}
 				},
 				email: {
 					validators: {
 						notEmpty: {
-							message: 'Please supply your email address'
+							message: "Please supply your email address"
 						},
 						emailAddress: {
-							message: 'Please supply a valid email address'
+							message: "Please supply a valid email address"
 						}
 					}
 				},
 				message: {
 					validators: {
 						notEmpty: {
-							message: 'Please write a message'
+							message: "Please write a message"
 						}
 					}
 				}
@@ -137,7 +128,7 @@ $(document).ready(function() {
 				return;
 			}
 
-			$('#success_message').slideDown({ opacity: "show" }, "slow");
+			$("#success_message").slideDown({ opacity: "show" }, "slow");
 
 			var msg = "Name='" + escape($("input[name=name]").val()) +
 				"', Email='" + escape($("input[name=email]").val()) +

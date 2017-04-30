@@ -16,10 +16,6 @@
 		<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"/>
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"/>
-
-
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -111,20 +107,33 @@
 						of 'Godspell', 'The Lion King' and 'Oliver'.</p>
 					</div>
 					<div class="col-md-6">
-						<div class="carousel">
-							<div><img src="img/gallery1.jpg" alt="Georgia And The Vintage Youth London Live" /></div>
-							<div><img src="img/gallery2.jpg" alt="Ollie Etherington Nord Keyboards" /></div>
-							<div><img src="img/gallery3.jpg" alt="Georgia And The Vintage Youth Featuring Dave Swift" /></div>
-							<div><img src="img/gallery4.jpg" alt="Ollie Etherington Fender Bass" /></div>
-							<div><img src="img/gallery5.jpg" alt="Ollie Etherington Hammond Organ" /></div>
-							<div><img src="img/gallery6.jpg" alt="Ollie Etherington Roland Keyboards" /></div>
-						</div>
-						<div class="small-screen-image">
-							<img src="img/gallery1.jpg" class="img-responsive center-block" alt="Ollie Etherington London Live" />
+						<div id="main-carousel" class="carousel slide lazy" data-ride="carousel" data-interval="4500">
+							<ol class="carousel-indicators">
+								<li data-target="#main-carousel" data-slide-to="0" class="active"></li>
+								<li data-target="#main-carousel" data-slide-to="1"></li>
+								<li data-target="#main-carousel" data-slide-to="2"></li>
+								<li data-target="#main-carousel" data-slide-to="3"></li>
+								<li data-target="#main-carousel" data-slide-to="4"></li>
+								<li data-target="#main-carousel" data-slide-to="5"></li>
+							</ol>
+							<div class="carousel-inner">
+								<div class="item active"><img src="img/gallery1.jpg" alt="Georgia And The Vintage Youth London Live"></div>
+								<div class="item"><img src="" data-src="img/gallery2.jpg" alt="Ollie Etherington Nord Keyboards"></div>
+								<div class="item"><img src="" data-src="img/gallery3.jpg" alt="Georgia And The Vintage Youth Featuring Dave Swift"></div>
+								<div class="item"><img src="" data-src="img/gallery4.jpg" alt="Ollie Etherington Fender Bass"></div>
+								<div class="item"><img src="" data-src="img/gallery5.jpg" alt="Ollie Etherington Hammond Organ"></div>
+								<div class="item"><img src="" data-src="img/gallery6.jpg" alt="Ollie Etherington Roland Keyboards"></div>
+							</div>
+							<a class="left carousel-control" href="#main-carousel" role="button" data-slide="prev">
+								<span class="glyphicon glyphicon-chevron-left"></span>
+							</a>
+							<a class="right carousel-control" href="#main-carousel" role="button" data-slide="next">
+								<span class="glyphicon glyphicon-chevron-right"></span>
+							</a>
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row top20">
 					<ul class="list-inline list-social text-center">
 						<li class="social-twitter">
 							<a href="https://twitter.com/@GeorgiaCrandon/"><i class="fa fa-twitter"></i></a>
@@ -349,13 +358,11 @@
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="js/jquery-3.1.1.min.js"><\/script>')</script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
 		<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
         <script src="js/lazyload.min.js"></script>
         <script src="js/main.js"></script>
-
 		<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
