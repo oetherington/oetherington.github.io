@@ -113,7 +113,7 @@ section a {
 	background: linear-gradient(to bottom, #151110, #221e1d);
 	background: url("../img/paisley.jpg");
 	background-repeat: no-repeat;
-	background-position: center;
+	background-position: 0px 0px;;
 }
 
 #about {
