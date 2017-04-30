@@ -182,10 +182,10 @@ ul.list-social li a {
 	transition: all 0.35s;
 }
 
-ul.list-social li.social-twitter a { background-color: #1da1f2; }
-ul.list-social li.social-twitter a:hover { background-color: #0488d9; }
 ul.list-social li.social-facebook a { background-color: #3b5998; }
 ul.list-social li.social-facebook a:hover { background-color: #344e86; }
+ul.list-social li.social-twitter a { background-color: #1da1f2; }
+ul.list-social li.social-twitter a:hover { background-color: #0488d9; }
 ul.list-social li.social-instagram a { background-color: #fb3958; }
 ul.list-social li.social-instagram a:hover { background-color: #e2203f; }
 ul.list-social li.social-soundcloud a { background-color: #ff6600; }
