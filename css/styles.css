@@ -107,10 +107,18 @@ section a {
 .top20 { margin-top: 20px; }
 
 /* INDIVIDUAL SECTIONS */
-#about {
+#bg_phony {
 	background-color: #221e1d;
 	background: -webkit-linear-gradient(to bottom, #151110, #221e1d);
 	background: linear-gradient(to bottom, #151110, #221e1d);
+	background: url("../img/paisley.jpg");
+	background-size: 100vw;
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+}
+
+#about {
+	background-color: rgba(0, 0, 0, 0.6);
 	color: #fff;
 	min-height: 100vh;
 }

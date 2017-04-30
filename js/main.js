@@ -29,6 +29,17 @@ $(function() {
 (function($) {
     "use strict";
 
+	// Parallax
+	(function() {
+		var bg = $("#bg_phony");
+		var viewport_h = $(window).height();
+		$(window).scroll(function(e) {
+			var s = $(window).scrollTop().valueOf() * 0.9;
+			if (s < viewport_h)
+				bg.css({ "background-position": "0px " + s + "px" });
+		});
+	})();
+
     // Page scrolling on click
     $(document).on("click", "a.page-scroll", function(event) {
         var $anchor = $(this);
