@@ -1,1 +1,50 @@
-body { text-align: center; }
+@font-face {
+	font-family: PxPlus;
+	src: url(PxPlus_IBM_VGA8.ttf);
+}
+
+/*
+ * Palette
+ * #000000:#cd0000:#00cd00:#cdcd00:#0000cd:#cd00cd:#00cdcd:#faebd7
+ * #404040:#ff0000:#00ff00:#ffff00:#0000ff:#ff00ff:#00ffff:#ffffff
+ */
+
+body {
+	font-family: "PxPlus", monospace;
+	width: 90%;
+	margin: auto;
+	background: #272820;
+	color: #fff;
+}
+
+hr {
+	border: none;
+	border-top: 1px dashed #cdcdcd;
+}
+
+h2 {
+	color: #cdcd00;
+}
+
+h4 {
+	color: #cd00cd;
+}
+
+.content {
+	margin: 0 2em;
+}
+
+@media only screen and (max-width: 600px) {
+	.content {
+		width: 90%;
+		margin: auto;
+	}
+}
+
+a {
+	color: #00cdcd;
+}
+
+a:hover {
+	color: #f0f;
+}
