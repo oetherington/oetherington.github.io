@@ -1,5 +1,5 @@
 @font-face {
-	font-family: PxPlus;
+	font-family: PxPlus_IBM_VGA;
 	src: url(PxPlus_IBM_VGA8.ttf);
 }
 
@@ -10,7 +10,7 @@
  */
 
 body {
-	font-family: "PxPlus", monospace;
+	font-family: "PxPlus_IBM_VGA", monospace;
 	width: 90%;
 	margin: auto;
 	background: #272820;
@@ -47,4 +47,15 @@ a {
 
 a:hover {
 	color: #f0f;
+}
+
+@keyframes blink {
+	0% { background: #272820; }
+	50% { background: #272820; }
+	51% { background: #cdcd00; }
+	100% { background: #cdcd00; }
+}
+
+.cursor {
+	animation: blink 1.5s linear 0s infinite none;
 }
