@@ -3,18 +3,12 @@
 	src: url(PxPlus_IBM_VGA8.ttf);
 }
 
-/*
- * Palette
- * #000000:#cd0000:#00cd00:#cdcd00:#0000cd:#cd00cd:#00cdcd:#faebd7
- * #404040:#ff0000:#00ff00:#ffff00:#0000ff:#ff00ff:#00ffff:#ffffff
- */
-
 body {
 	font-family: "PxPlus_IBM_VGA", monospace;
-	width: 90%;
-	margin: auto;
 	background: #272820;
 	color: #fff;
+	width: 90%;
+	margin: auto;
 }
 
 hr {
@@ -22,32 +16,10 @@ hr {
 	border-top: 1px dashed #cdcdcd;
 }
 
-h2 {
-	color: #cdcd00;
-}
-
-h4 {
-	color: #cd00cd;
-}
-
-.content {
-	margin: 0 2em;
-}
-
-@media only screen and (max-width: 600px) {
-	.content {
-		width: 90%;
-		margin: auto;
-	}
-}
-
-a {
-	color: #00cdcd;
-}
-
-a:hover {
-	color: #f0f;
-}
+h2 { color: #cdcd00; }
+h4 { color: #cd00cd; }
+a { color: #00cdcd; }
+a:hover { color: #f0f; }
 
 @keyframes blink {
 	0% { background: #272820; }
@@ -56,6 +28,9 @@ a:hover {
 	100% { background: #cdcd00; }
 }
 
-.cursor {
-	animation: blink 1.5s linear 0s infinite none;
+.cursor { animation: blink 1.5s linear 0s infinite none; }
+
+.content {
+	max-width: 70ch;
+	padding: 0 2ch;
 }
