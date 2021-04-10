@@ -23,12 +23,10 @@ a:hover { color: #f0f; }
 
 @keyframes blink {
 	0% { background: #272820; }
-	50% { background: #272820; }
-	51% { background: #cdcd00; }
-	100% { background: #cdcd00; }
+	50% { background: #cdcd00; }
 }
 
-.cursor { animation: blink 1.5s linear 0s infinite none; }
+.cursor { animation: blink 1.5s steps(1,end) 0s infinite none; }
 
 .content {
 	max-width: 70ch;
