@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+	div(class="center"): h2 <span class="no-mobile">==== </span>!{article.name} <span class="no-mobile"> ====</span>
+	div(class="content centered center")
+		hr
+		- let item_count = 1
+		each item in toc
+			if item.level === 1
+				p: a(href=`#${item.anchor}`) #{item_count++}. #{item.text}
+		if toc && toc.length > 0
+			hr
+	div(class="content centered") !{content}

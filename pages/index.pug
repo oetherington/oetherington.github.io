@@ -1,0 +1,18 @@
+extends layout.pug
+
+block content
+	div(class="content")
+		h3 Code
+		div(class="content")
+			p: a(href="https://github.com/oetherington/jskorost") JSkorost
+			p
+				a(href="https://github.com/oetherington/ChessPieceSwitcher") ChessPieceSwitcher
+				a(href="https://addons.mozilla.org/en-US/firefox/addon/chesspieceswitcher/") !{icons.get("firefox").svg}
+				a(href="https://chrome.google.com/webstore/detail/lichesspieceswitcher/koifaekonhpknbmkbgcacnfcplmhaehn") !{icons.get("googlechrome").svg}
+			p: a(href="https://www.etherington.xyz/chrd/") Chord Chart Editor
+			p: a(href="https://github.com/oetherington/ws") ws
+	div(class="content")
+		h3 Writing
+		div(class="content")
+			each article in articles.reverse()
+				p: a(href=`/${article.path}.htm`)= article.name
