@@ -6,7 +6,7 @@ import cheerio from "cheerio";
 import hljs from "highlight.js";
 import gitDateExtractor from "git-date-extractor";
 
-const ROOT = "https://www.etherington.xyz/";
+const ROOT = "https://www.etherington.io/";
 const ARTICLES = "articles/manifest.json";
 const PUBLIC = "public";
 const OUT = "docs";

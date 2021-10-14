@@ -1,6 +1,6 @@
-# www.etherington.xyz
+# www.etherington.io
 
-This repo contains the source and content for www.etherington.xyz. The content
+This repo contains the source and content for www.etherington.io. The content
 is written dynamically, but is then compiled and served statically.
 
 In order to be served by github pages, the compiled output is in the "docs"
