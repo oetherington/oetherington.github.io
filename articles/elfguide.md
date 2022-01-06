@@ -39,8 +39,10 @@ but these are not present in object files to be passed into a linker.
 In the tables below, fields with the size <code lang="plaintext">4/8</code> are
 4 bytes for 32 bit code and 8 bytes for 64 bit code.
 
+<!--
 A reasonably concise implementation of the layout described on this page can be
 found in my B compiler, [obc](https://github.com/oetherington/obc).
+-->
 
 # ELF Header
 

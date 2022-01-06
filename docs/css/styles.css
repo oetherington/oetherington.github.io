@@ -5,7 +5,7 @@
 
 body {
 	font-family: "PxPlus_IBM_VGA", monospace;
-	background: #272820;
+	background: #000;
 	color: #fff;
 	width: 90%;
 	margin: auto;
@@ -32,8 +32,8 @@ h1 a:hover { color: #00cdcd; }
 h2 a { color: #cdcd00; text-decoration: none !important; }
 h2 a:hover { color: #f0f; }
 
-.gh { float: right; font-size: 1.5em; }
-.gh svg { fill: #cdcd00; }
+.link-icons { float: right; font-size: 2em; }
+.link-icons svg { fill: #cdcd00; }
 
 table {
 	text-align: left;
@@ -75,14 +75,14 @@ h2 a:hover .cursor { background: #f0f; }
 }
 
 code {
-	background: #000;
+	background: #002A35;
 	font-family: "PxPlus_IBM_VGA", monospace;
 	padding: 0.15em;
 	border-radius: 0.2em;
 }
 
 pre {
-	background: #000;
+	background: #002A35;
 	padding: 0.5em;
 	border-radius: 1em;
 	white-space: pre-wrap;
@@ -110,7 +110,7 @@ pre code {
 .hljs-comment, .hljs-deletion, .hljs-meta { color: #75715e; }
 
 .todo {
-	background: #000;
+	background: #002A35;
 	color: #cdcd00;
 	padding-top: 0.15em;
 	border-radius: 0.2em;
