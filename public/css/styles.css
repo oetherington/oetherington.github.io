@@ -1,6 +1,7 @@
 @font-face {
 	font-family: PxPlus_IBM_VGA;
-	src: url(PxPlus_IBM_VGA8.ttf);
+	src: url(WebPlus_IBM_VGA_8x16.woff) format('woff'),
+		 url(PxPlus_IBM_VGA_8x16.ttf) format('truetype');
 }
 
 body {
@@ -59,6 +60,10 @@ h2 a:hover .cursor { background: #f0f; }
 	overflow-wrap: break-word;
 }
 
+.content h1:not(:first-child) {
+	margin-top: 2em;
+}
+
 .center { text-align: center; }
 
 .centered { margin: 0 auto; }
@@ -74,15 +79,23 @@ h2 a:hover .cursor { background: #f0f; }
 	.no-mobile { display: none; }
 }
 
+.todo {
+	background: #222;
+	color: #cdcd00;
+	padding: 0.15em;
+	padding-bottom: 0;
+	border-radius: 0.2em;
+}
+
 code {
-	background: #002A35;
+	background: #222;
 	font-family: "PxPlus_IBM_VGA", monospace;
 	padding: 0.15em;
 	border-radius: 0.2em;
 }
 
 pre {
-	background: #002A35;
+	background: #222;
 	padding: 0.5em;
 	border-radius: 1em;
 	white-space: pre-wrap;
@@ -108,10 +121,3 @@ pre code {
 .hljs-selector-attr, .hljs-selector-pseudo, .hljs-addition, .hljs-variable,
 .hljs-template-variable { color: #e6db74; }
 .hljs-comment, .hljs-deletion, .hljs-meta { color: #75715e; }
-
-.todo {
-	background: #002A35;
-	color: #cdcd00;
-	padding-top: 0.15em;
-	border-radius: 0.2em;
-}
