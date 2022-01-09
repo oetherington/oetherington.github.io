@@ -17,11 +17,6 @@ hr {
 	border-top: 1px dashed #cdcdcd;
 }
 
-svg {
-	width: 1.1em;
-	margin: 0 0.3em -0.2em 0.3em;
-}
-
 h2 { color: #cdcd00; }
 h4 { color: #cd00cd; }
 a { color: #00cdcd; }
@@ -33,8 +28,19 @@ h1 a:hover { color: #00cdcd; }
 h2 a { color: #cdcd00; text-decoration: none !important; }
 h2 a:hover { color: #f0f; }
 
+svg {
+	margin: 0 0.3em -0.2em 0.3em;
+}
+
 .link-icons { float: right; font-size: 2em; }
-.link-icons svg { fill: #cdcd00; }
+.link-icons svg {
+	fill: #cdcd00;
+	width: 1.1em;
+}
+
+.inline-icon svg {
+	width: 1em;
+}
 
 table {
 	text-align: left;
