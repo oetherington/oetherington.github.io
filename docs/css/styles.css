@@ -75,6 +75,8 @@ h2 a:hover .cursor { background: #f0f; }
 
 .centered { margin: 0 auto; }
 
+.tall { line-height: 1.5em; }
+
 .footer {
 	font-size: 0.8em;
 	line-height: 90%;
