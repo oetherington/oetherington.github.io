@@ -1,12 +1,13 @@
 @font-face {
-	font-family: PxPlus_IBM_VGA;
-	src: url(WebPlus_IBM_VGA_8x16.woff) format('woff'),
-		 url(PxPlus_IBM_VGA_8x16.ttf) format('truetype');
+	font-family: Unifont;
+	src: url(UnifontLatin.woff2) format('woff2'),
+		 url(UnifontLatin.woff) format('woff'),
+		 url(UnifontLatin.ttf) format('truetype');
 }
 
 body {
-	font-family: "PxPlus_IBM_VGA", monospace;
-	background: #000;
+	font-family: "Unifont", monospace;
+	background: #111;
 	color: #fff;
 	width: 90%;
 	margin: auto;
@@ -86,22 +87,21 @@ h2 a:hover .cursor { background: #f0f; }
 }
 
 .todo {
-	background: #222;
+	background: #000;
 	color: #cdcd00;
 	padding: 0.15em;
-	padding-bottom: 0;
 	border-radius: 0.2em;
 }
 
 code {
-	background: #222;
-	font-family: "PxPlus_IBM_VGA", monospace;
+	background: #000;
+	font-family: "Unifont", monospace;
 	padding: 0.15em;
 	border-radius: 0.2em;
 }
 
 pre {
-	background: #222;
+	background: #000;
 	padding: 0.5em;
 	border-radius: 1em;
 	white-space: pre-wrap;

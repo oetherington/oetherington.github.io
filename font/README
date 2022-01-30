@@ -1,0 +1,3 @@
+The font used on this site is just the GNU Unifont. However, Unifont is
+_massive_, so here we just export the characters we actually need. This brings
+the size down from 1.2M to 3.4k.
