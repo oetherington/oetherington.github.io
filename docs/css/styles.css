@@ -33,7 +33,14 @@ svg {
 	margin: 0 0.3em -0.2em 0.3em;
 }
 
-.link-icons { float: right; font-size: 2em; }
+.link-icons {
+	float: right;
+	font-size: 2em;
+	display: flex;
+	align-items: center;
+	gap: 0.2em;
+}
+
 .link-icons svg {
 	fill: #cdcd00;
 	width: 1.1em;
@@ -41,6 +48,11 @@ svg {
 
 .inline-icon svg {
 	width: 1em;
+}
+
+.ukraine {
+	text-decoration: none;
+	font-size: 1.4em;
 }
 
 table {
