@@ -57,7 +57,7 @@ async function build() {
 	await fs.copy(PUBLIC, OUT);
 
 	console.log("Compiling index");
-	await compileFile("pages/index.pug", "index.htm", {
+	await compileFile("pages/index.pug", "index.html", {
 		title: "Ollie Etherington",
 		articles,
 	});
@@ -71,7 +71,7 @@ async function build() {
 			gfm: true,
 			smartLists: true,
 		});
-		await compileFile("pages/article.pug", `${article.path}.htm`, {
+		await compileFile("pages/article.pug", `${article.path}.html`, {
 			title: `${article.name} | Ollie Etherington`,
 			toc: renderer.toc,
 			article,
@@ -84,7 +84,7 @@ async function build() {
 
 	console.log("Compiling sitemap");
 	let locations = articles.map(a => { return {
-		url: `${ROOT}${a.path}.htm`,
+		url: `${ROOT}${a.path}`,
 		modified: stamps[`articles/${a.path}.md`].modified,
 	}});
 	locations.unshift({

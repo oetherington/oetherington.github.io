@@ -31,7 +31,7 @@ block content
 		h3 Writing
 		div(class="content")
 			each article in articles.reverse()
-				p: a(href=`/${article.path}.htm`)= article.name
+				p: a(href=`/${article.path}`)= article.name
 	br
 	div(class="content")
 		h3 Contact
