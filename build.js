@@ -1,7 +1,7 @@
 import * as fs from "fs-extra";
 import pug from "pug";
 import simpleIcons from "simple-icons";
-import marked from "marked";
+import { marked } from "marked";
 import cheerio from "cheerio";
 import hljs from "highlight.js";
 import gitDateExtractor from "git-date-extractor";
