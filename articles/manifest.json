@@ -1,3 +1,4 @@
 [
-	{ "name": "ELF for Compiler Writers", "path": "elfguide" }
+	{ "name": "ELF for Compiler Writers", "path": "elfguide" },
+	{ "name": "Zero-Downtime Mongo-to-Postgres Migrations", "path": "mongo2pg", "ignored": true }
 ]

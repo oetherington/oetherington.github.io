@@ -11,7 +11,9 @@ const ARTICLES = "articles/manifest.json";
 const PUBLIC = "public";
 const OUT = "docs";
 
-const articles = JSON.parse(fs.default.readFileSync(ARTICLES, "utf8"));
+const articles = JSON
+	.parse(fs.default.readFileSync(ARTICLES, "utf8"))
+	.filter((article) => !article.ignored);
 
 async function compileFile(input, output, params = {}) {
 	try {
