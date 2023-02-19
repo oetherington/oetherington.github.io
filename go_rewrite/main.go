@@ -9,7 +9,7 @@ func main() {
 	palette := createPalette()
 	styles := createStyles(palette)
 
-	page := Layout(palette, "", nil)
+	page := Layout(palette, "", Index())
 
 	css := RenderCss(styles)
 	html := RenderHtml(page)
