@@ -32,20 +32,18 @@ func generateHtml(node smetana.Node, targetName string) error {
 }
 
 func generateCss(stylesheet smetana.StyleSheet, targetName string) error {
-	html := smetana.RenderCss(stylesheet)
-	return writeString(html, targetName)
+	css := smetana.RenderCss(stylesheet)
+	return writeString(css, targetName)
 }
 
 func main() {
 	fmt.Println("Removing old build")
-	err := os.RemoveAll(OUTPUT_DIR)
-	if err != nil {
+	if err := os.RemoveAll(OUTPUT_DIR); err != nil {
 		log.Fatalln(err)
 	}
 
 	fmt.Println("Copying public files")
-	err = copy.Copy(PUBLIC_DIR, OUTPUT_DIR)
-	if err != nil {
+	if err := copy.Copy(PUBLIC_DIR, OUTPUT_DIR); err != nil {
 		log.Fatalln(err)
 	}
 
@@ -60,17 +58,26 @@ func main() {
 
 	fmt.Println("Compiling styles")
 	styles := createStyles(palette)
-	err = generateCss(styles, "css/styles.css")
-	if err != nil {
+	if err := generateCss(styles, "css/styles.css"); err != nil {
 		log.Fatalln(err)
 	}
 
 	fmt.Println("Compiling index")
 	index := Layout(palette, "", Index(articleInfo))
-	err = generateHtml(index, "index.html")
-	if err != nil {
+	if err := generateHtml(index, "index.html"); err != nil {
 		log.Fatalln(err)
 	}
 
-	fmt.Println("Compiling articles")
+	fmt.Println("Compiling articles...")
+	for _, article := range articleInfo {
+		if !article.Published {
+			continue
+		}
+		fmt.Println("...", article.Name)
+		articleHtml := MdArticle(palette, article)
+		fileName := fmt.Sprintf("%s.html", article.Path)
+		if err = generateHtml(articleHtml, fileName); err != nil {
+			log.Fatalln(err)
+		}
+	}
 }
