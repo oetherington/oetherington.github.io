@@ -8,6 +8,8 @@ import (
 
 	. "github.com/oetherington/smetana"
 	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark/extension"
+	"github.com/yuin/goldmark/parser"
 )
 
 func renderMarkdownFile(path string) (Node, error) {
@@ -23,8 +25,15 @@ func renderMarkdownFile(path string) (Node, error) {
 		return nil, err
 	}
 
+	renderer := goldmark.New(
+		goldmark.WithExtensions(extension.GFM),
+		goldmark.WithParserOptions(
+			parser.WithAutoHeadingID(),
+		),
+	)
+
 	var buf bytes.Buffer
-	if err := goldmark.Convert(md, &buf); err != nil {
+	if err := renderer.Convert(md, &buf); err != nil {
 		return nil, err
 	}
 
