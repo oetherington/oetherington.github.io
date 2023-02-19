@@ -37,27 +37,40 @@ func generateCss(stylesheet smetana.StyleSheet, targetName string) error {
 }
 
 func main() {
+	fmt.Println("Removing old build")
 	err := os.RemoveAll(OUTPUT_DIR)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
+	fmt.Println("Copying public files")
 	err = copy.Copy(PUBLIC_DIR, OUTPUT_DIR)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
+	fmt.Println("Loading articles")
+	articleInfo, err := loadArticleInfo()
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	fmt.Println("Generating palette")
 	palette := createPalette()
 
+	fmt.Println("Compiling styles")
 	styles := createStyles(palette)
 	err = generateCss(styles, "css/styles.css")
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	index := Layout(palette, "", Index())
+	fmt.Println("Compiling index")
+	index := Layout(palette, "", Index(articleInfo))
 	err = generateHtml(index, "index.html")
 	if err != nil {
 		log.Fatalln(err)
 	}
+
+	fmt.Println("Compiling articles")
 }

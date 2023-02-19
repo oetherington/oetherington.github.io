@@ -1,10 +1,29 @@
 package main
 
 import (
+	"fmt"
 	. "github.com/oetherington/smetana"
 )
 
-func Index() FragmentNode {
+func ArticleList(articleInfo []ArticleInfo) FragmentNode {
+	node := Fragment()
+	for _, article := range articleInfo {
+		if !article.Published {
+			continue
+		}
+		node.AssignChildren(Children{
+			P(
+				AHref(
+					fmt.Sprintf("/%s", article.Path),
+					article.Name,
+				),
+			),
+		})
+	}
+	return node
+}
+
+func Index(articleInfo []ArticleInfo) FragmentNode {
 	return Fragment(
 		Br(),
 		Div(
@@ -23,7 +42,7 @@ func Index() FragmentNode {
 			H3("Writing"),
 			Div(
 				ClassName("content"),
-				P("TODO"),
+				ArticleList(articleInfo),
 			),
 		),
 		Br(),
