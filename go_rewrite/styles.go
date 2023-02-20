@@ -155,6 +155,10 @@ func createStyles(palette Palette) StyleSheet {
 			"padding":     "0",
 			"white-space": "0",
 		}),
+		StylesBlock("ul", CssProps{
+			"list-style": `"- "`,
+			"list-style-type": `"- "`,
+		}),
 	)
 	return styles
 }

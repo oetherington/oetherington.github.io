@@ -1,3 +1,5 @@
+all: run
+
 test:
 	go test -v -coverprofile=coverage.out
 
