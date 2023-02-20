@@ -9,6 +9,7 @@ import (
 
 	. "github.com/oetherington/smetana"
 	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark-highlighting/v2"
 	"github.com/yuin/goldmark/ast"
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
@@ -102,9 +103,21 @@ func renderMarkdownFile(path string) (Node, Node, error) {
 	}
 
 	markdown := goldmark.New(
-		goldmark.WithExtensions(extension.GFM),
+		goldmark.WithExtensions(
+			extension.GFM,
+			highlighting.NewHighlighting(
+				highlighting.WithStyle("monokai"),
+				// highlighting.WithFormatOptions(
+					// html.WithLineNumbers(),
+				// ),
+			),
+			// highlighting.Highlighting,
+		),
 		goldmark.WithParserOptions(
 			parser.WithAutoHeadingID(),
+		),
+		goldmark.WithRendererOptions(
+			html.WithUnsafe(),
 		),
 	)
 	markdown.Renderer().AddOptions(renderer.WithNodeRenderers(

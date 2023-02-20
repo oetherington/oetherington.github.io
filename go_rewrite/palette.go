@@ -26,7 +26,7 @@ type Palette struct {
 func createPalette() Palette {
 	return Palette{
 		black:       Hex("#000"),
-		offBlack:    Hex("#111"),
+		offBlack:    Hex("#222"),
 		white:       Hex("#fff"),
 		offWhite:    Hex("#f8f8f2"),
 		darkGrey:    Hex("#75715e"),
