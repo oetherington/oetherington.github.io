@@ -17,19 +17,15 @@ func Projects() DomNode {
 	return Div(
 		ClassName("content"),
 		Project(
-			"Glinka",
-			"https://glinka.io",
-			"A fast Typescript compiler written in Zig",
-			AHref(
-				"https://www.npmjs.com/package/glinka",
-				ClassName("inline-icon"),
-				NPM_ICON,
-			),
-		),
-		Project(
 			"Spockfish",
 			"https://spockfish.com",
 			"A 3D chess engine and interface",
+			nil,
+		),
+		Project(
+			"Smetana",
+			"https://github.com/oetherington/smetana",
+			"An HTML and CSS generator for Go",
 			nil,
 		),
 		Project(
@@ -43,6 +39,16 @@ func Projects() DomNode {
 			"https://www.etherington.io/chrd/",
 			"A LaTeX inspired chord chart editor",
 			nil,
+		),
+		Project(
+			"Glinka",
+			"https://glinka.io",
+			"A fast Typescript compiler written in Zig",
+			AHref(
+				"https://www.npmjs.com/package/glinka",
+				ClassName("inline-icon"),
+				NPM_ICON,
+			),
 		),
 		Project(
 			"ws",
