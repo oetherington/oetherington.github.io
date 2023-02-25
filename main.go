@@ -89,6 +89,9 @@ func main() {
 	if err := generateCss(lightStyles, "css/light.css"); err != nil {
 		log.Fatalln(err)
 	}
+	if err := generateCss(createPrintStyles(), "css/print.css"); err != nil {
+		log.Fatalln(err)
+	}
 
 	fmt.Println("Compiling index")
 	index := Layout(darkPalette, "", Index(articleInfo))

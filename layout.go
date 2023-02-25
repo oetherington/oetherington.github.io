@@ -20,12 +20,17 @@ func Layout(palette Palette, title string, content Node) HtmlNode {
 			Charset(""),
 			Link(Attrs{
 				"rel":   "stylesheet",
+				"href":  "/css/print.css",
+				"media": "print",
+			}),
+			Link(Attrs{
+				"rel":   "stylesheet",
 				"href":  "/css/light.css",
 				"media": "screen and (prefers-color-scheme: light)",
 			}),
 			Link(Attrs{
-				"rel":  "stylesheet",
-				"href": "/css/dark.css",
+				"rel":   "stylesheet",
+				"href":  "/css/dark.css",
 				"media": "screen and (prefers-color-scheme: dark)",
 			}),
 			Equiv("x-ua-compatible", "ie=edge"),

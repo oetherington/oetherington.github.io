@@ -182,3 +182,12 @@ func createStyles(palette Palette, prefixClass string) (StyleSheet, error) {
 	)
 	return styles, nil
 }
+
+func createPrintStyles() StyleSheet {
+	styles := NewStyleSheet(
+		StylesBlock("svg", CssProps{
+			"display": "none",
+		}),
+	)
+	return styles
+}
