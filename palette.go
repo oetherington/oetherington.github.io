@@ -17,7 +17,7 @@ type Palette struct {
 	red        Color
 }
 
-func createPalette() Palette {
+func createDarkPalette() Palette {
 	return Palette{
 		background: Hex("#282a36"),
 		black:      Hex("#000"),

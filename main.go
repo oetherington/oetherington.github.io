@@ -36,6 +36,8 @@ func generateCss(stylesheet smetana.StyleSheet, targetName string) error {
 	return writeString(css, targetName)
 }
 
+const BASE_URL = "https://www.etherington.io/"
+
 func main() {
 	fmt.Println("Removing old build")
 	if err := os.RemoveAll(OUTPUT_DIR); err != nil {
@@ -53,14 +55,10 @@ func main() {
 	if err := os.MkdirAll(fontOutDir, 0777); err != nil {
 		log.Fatalln(err)
 	}
-	fontSrcs := []string{
-		"UnifontLatin.ttf",
-		"UnifontLatin.woff",
-		"UnifontLatin.woff2",
-	}
-	for _, fontSrc := range fontSrcs {
-		src := fontSrcDir + fontSrc
-		dest := fontOutDir + "/" + fontSrc
+	fontFormats := []string{"ttf", "woff", "woff2"}
+	for _, fontFormat := range fontFormats {
+		src := fontSrcDir + "UnifontLatin." + fontFormat
+		dest := fontOutDir + "/UnifontLatin." + fontFormat
 		if err := copy.Copy(src, dest); err != nil {
 			log.Fatalln(err)
 		}
@@ -73,7 +71,7 @@ func main() {
 	}
 
 	fmt.Println("Generating palette")
-	palette := createPalette()
+	palette := createDarkPalette()
 
 	fmt.Println("Compiling styles")
 	styles := createStyles(palette)
@@ -101,11 +99,10 @@ func main() {
 	}
 
 	fmt.Println("Compiling sitemap")
-	baseUrl := "https://www.etherington.io/"
 	staticRoutes := []StaticRoute{
 		{"", "./index.go"},
 	}
-	locations, err := getSitemapLocations(baseUrl, staticRoutes, articleInfo)
+	locations, err := getSitemapLocations(BASE_URL, staticRoutes, articleInfo)
 	if err != nil {
 		log.Fatalln(err)
 	}
