@@ -32,28 +32,28 @@ func createStyles(palette Palette) StyleSheet {
 		StylesBlock("hr", CssProps{
 			"border-top": fmt.Sprintf(
 				"1px dashed %s",
-				palette.lightGrey.ToCssColor(),
+				palette.grey.ToCssColor(),
 			),
 		}),
 		StylesBlock("h2", CssProps{
-			"color": palette.lightYellow,
+			"color": palette.yellow,
 		}),
 		StylesBlock("h4", CssProps{
-			"color": palette.lightPink,
+			"color": palette.pink,
 		}),
 		StylesBlock("a", CssProps{
 			"color":      palette.lightBlue,
 			"transition": "color 0.2s",
 		}),
 		StylesBlock("a:hover", CssProps{
-			"color": palette.darkPink,
+			"color": palette.pink,
 		}),
 		StylesBlock("a svg", CssProps{
 			"fill":       palette.lightBlue,
 			"transition": "fill 0.2s",
 		}),
 		StylesBlock("a svg:hover", CssProps{
-			"fill": palette.darkPink,
+			"fill": palette.pink,
 		}),
 		StylesBlock("h1 a", CssProps{
 			"color":           palette.white,
@@ -63,11 +63,11 @@ func createStyles(palette Palette) StyleSheet {
 			"color": palette.lightBlue,
 		}),
 		StylesBlock("h2 a", CssProps{
-			"color":           palette.lightYellow,
+			"color":           palette.yellow,
 			"text-decoration": "none !important",
 		}),
 		StylesBlock("h2 a:hover", CssProps{
-			"color": palette.darkPink,
+			"color": palette.pink,
 		}),
 		StylesBlock("svg", CssProps{
 			"margin": "0 0.3em -0.2em 0.3em",
@@ -80,7 +80,7 @@ func createStyles(palette Palette) StyleSheet {
 			"gap":         EM(0.2),
 		}),
 		StylesBlock(".link-icons svg", CssProps{
-			"fill":  palette.lightYellow,
+			"fill":  palette.yellow,
 			"width": EM(1.1),
 		}),
 		StylesBlock(".inline-icon svg", CssProps{
@@ -93,7 +93,7 @@ func createStyles(palette Palette) StyleSheet {
 		StylesBlock("th", CssProps{
 			"border-bottom": fmt.Sprintf(
 				"1px dashed %s",
-				palette.lightGrey.ToCssColor(),
+				palette.grey.ToCssColor(),
 			),
 		}),
 		StylesCss(`
@@ -106,10 +106,10 @@ func createStyles(palette Palette) StyleSheet {
 			"animation": "blink 1.5s steps(1,end) 0s infinite none",
 		}),
 		StylesBlock("h2 .cursor", CssProps{
-			"background": palette.lightYellow,
+			"background": palette.yellow,
 		}),
 		StylesBlock("h2 a:hover .cursor", CssProps{
-			"background": palette.darkPink,
+			"background": palette.pink,
 		}),
 		StylesBlock(".content-full", CssProps{
 			"padding": "0 2ch",
@@ -144,7 +144,7 @@ func createStyles(palette Palette) StyleSheet {
 		`),
 		StylesBlock(".todo", CssProps{
 			"background":    palette.black,
-			"color":         palette.lightYellow,
+			"color":         palette.yellow,
 			"padding":       EM(0.15),
 			"border-radius": EM(0.2),
 		}),
@@ -169,7 +169,7 @@ func createStyles(palette Palette) StyleSheet {
 			"list-style-type": `"- "`,
 		}),
 		StylesBlock(".code-lit", CssProps{
-			"color": palette.darkYellow,
+			"color": palette.yellow,
 		}),
 		StylesBlock(".code-fn", CssProps{
 			"color": palette.green,

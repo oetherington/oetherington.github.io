@@ -24,7 +24,7 @@ func Layout(palette Palette, title string, content Node) HtmlNode {
 			Author("Ollie Etherington"),
 			Keywords("ollie,oliver,etherington,london,oxford,programmer"),
 			Viewport(""),
-			Meta("msapplication-TileColor", palette.lightPink.ToCssColor()),
+			Meta("msapplication-TileColor", palette.pink.ToCssColor()),
 			Meta("theme-color", palette.white.ToCssColor()),
 			Link(Attrs{
 				"rel":  "shortcut icon",
@@ -51,7 +51,7 @@ func Layout(palette Palette, title string, content Node) HtmlNode {
 			Link(Attrs{
 				"rel":   "mask-icon",
 				"href":  "/safari-pinned-tab.svg",
-				"color": palette.darkGrey.ToCssColor(),
+				"color": palette.grey.ToCssColor(),
 			}),
 			LinkHref("manifest", "/site.webmanifest"),
 			LinkHref("stylesheet", "css/styles.css"),
