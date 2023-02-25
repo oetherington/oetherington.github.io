@@ -5,8 +5,8 @@ import (
 	. "github.com/oetherington/smetana"
 )
 
-func createStyles(palette Palette) (StyleSheet, error) {
-	mdCss, err := renderMarkdownCss(palette, "")
+func createStyles(palette Palette, prefixClass string) (StyleSheet, error) {
+	mdCss, err := renderMarkdownCss(palette, prefixClass)
 	if err != nil {
 		return StyleSheet{}, err
 	}

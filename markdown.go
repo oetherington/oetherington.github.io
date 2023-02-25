@@ -192,5 +192,11 @@ func renderMarkdownCss(palette Palette, prefixClass string) (string, error) {
 	}
 	css = m.ReplaceAllString(css, prefixClass)
 
+	m, err = regexp.Compile("\\n")
+	if err != nil {
+		return "", err
+	}
+	css = m.ReplaceAllString(css, "")
+
 	return css, nil
 }

@@ -18,6 +18,16 @@ func Layout(palette Palette, title string, content Node) HtmlNode {
 	return Html(
 		Head(
 			Charset(""),
+			Link(Attrs{
+				"rel":   "stylesheet",
+				"href":  "/css/light.css",
+				"media": "screen and (prefers-color-scheme: light)",
+			}),
+			Link(Attrs{
+				"rel":  "stylesheet",
+				"href": "/css/dark.css",
+				"media": "screen and (prefers-color-scheme: dark)",
+			}),
 			Equiv("x-ua-compatible", "ie=edge"),
 			Title(formatTitle(title)),
 			Description("Ollie Etherington"),
@@ -54,9 +64,9 @@ func Layout(palette Palette, title string, content Node) HtmlNode {
 				"color": palette.grey.ToCssColor(),
 			}),
 			LinkHref("manifest", "/site.webmanifest"),
-			LinkHref("stylesheet", "css/styles.css"),
 		),
 		Body(
+			Script("0"), // Prevents FOUC in Firefox
 			Div(
 				ClassName("content-full"),
 				Div(
