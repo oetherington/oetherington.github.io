@@ -31,3 +31,18 @@ func createDarkPalette() Palette {
 		red:        Hex("#FF5C57"),
 	}
 }
+
+func createLightPalette() Palette {
+	return Palette{
+		background: Hex("#fdf6e3"),
+		black:      Hex("#eee8d5"),
+		white:      Hex("#839496"),
+		grey:       Hex("#073642"),
+		yellow:     Hex("#b58900"),
+		pink:       Hex("#d33682"),
+		darkBlue:   Hex("#268bd2"),
+		lightBlue:  Hex("#2aa198"),
+		green:      Hex("#859900"),
+		red:        Hex("#dc322f"),
+	}
+}

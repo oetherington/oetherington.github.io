@@ -70,17 +70,17 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	fmt.Println("Generating palette")
-	palette := createDarkPalette()
+	fmt.Println("Generating palettes")
+	darkPalette := createDarkPalette()
 
 	fmt.Println("Compiling styles")
-	styles := createStyles(palette)
+	styles := createStyles(darkPalette)
 	if err := generateCss(styles, "css/styles.css"); err != nil {
 		log.Fatalln(err)
 	}
 
 	fmt.Println("Compiling index")
-	index := Layout(palette, "", Index(articleInfo))
+	index := Layout(darkPalette, "", Index(articleInfo))
 	if err := generateHtml(index, "index.html"); err != nil {
 		log.Fatalln(err)
 	}
@@ -91,7 +91,7 @@ func main() {
 			continue
 		}
 		fmt.Println("...", article.Name)
-		articleHtml := MdArticle(palette, article)
+		articleHtml := MdArticle(darkPalette, article)
 		fileName := fmt.Sprintf("%s.html", article.Path)
 		if err = generateHtml(articleHtml, fileName); err != nil {
 			log.Fatalln(err)
