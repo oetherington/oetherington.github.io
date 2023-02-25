@@ -156,7 +156,7 @@ also be 0. The header is as follows:
 
 The layout described in this article has the following data:
 
-```
+```c
 const char shstrtab[] = {
 	0, '.', 'd', 'a', 't', 'a',
 	0, '.', 't', 'e' ,'x', 't',
