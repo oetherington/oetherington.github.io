@@ -47,10 +47,29 @@ func main() {
 		log.Fatalln(err)
 	}
 
+	fmt.Println("Copying fonts")
+	fontSrcDir := "./font/"
+	fontOutDir := fmt.Sprintf("%s/css", OUTPUT_DIR)
+	if err := os.MkdirAll(fontOutDir, 0777); err != nil {
+		log.Fatalln(err)
+	}
+	fontSrcs := []string{
+		"UnifontLatin.ttf",
+		"UnifontLatin.woff",
+		"UnifontLatin.woff2",
+	}
+	for _, fontSrc := range fontSrcs {
+		src := fontSrcDir + fontSrc
+		dest := fontOutDir + "/" + fontSrc
+		if err := copy.Copy(src, dest); err != nil {
+			log.Fatalln(err)
+		}
+	}
+
 	fmt.Println("Loading articles")
 	articleInfo, err := loadArticleInfo()
 	if err != nil {
-		log.Fatalln(err)
+	log.Fatalln(err)
 	}
 
 	fmt.Println("Generating palette")
@@ -59,40 +78,40 @@ func main() {
 	fmt.Println("Compiling styles")
 	styles := createStyles(palette)
 	if err := generateCss(styles, "css/styles.css"); err != nil {
-		log.Fatalln(err)
+	log.Fatalln(err)
 	}
 
 	fmt.Println("Compiling index")
 	index := Layout(palette, "", Index(articleInfo))
 	if err := generateHtml(index, "index.html"); err != nil {
-		log.Fatalln(err)
+	log.Fatalln(err)
 	}
 
 	fmt.Println("Compiling articles...")
 	for _, article := range articleInfo {
-		if !article.Published {
-			continue
-		}
-		fmt.Println("...", article.Name)
-		articleHtml := MdArticle(palette, article)
-		fileName := fmt.Sprintf("%s.html", article.Path)
-		if err = generateHtml(articleHtml, fileName); err != nil {
-			log.Fatalln(err)
-		}
+	if !article.Published {
+	continue
+	}
+	fmt.Println("...", article.Name)
+	articleHtml := MdArticle(palette, article)
+	fileName := fmt.Sprintf("%s.html", article.Path)
+	if err = generateHtml(articleHtml, fileName); err != nil {
+	log.Fatalln(err)
+	}
 	}
 
 	fmt.Println("Compiling sitemap")
 	baseUrl := "https://www.etherington.io/"
 	staticRoutes := []StaticRoute{
-		{"", "./index.go"},
+	{"", "./index.go"},
 	}
 	locations, err := getSitemapLocations(baseUrl, staticRoutes, articleInfo)
 	if err != nil {
-		log.Fatalln(err)
+	log.Fatalln(err)
 	}
 	sitemap := Sitemap(locations)
 	if err := generateHtml(sitemap, "sitemap.xml"); err != nil {
-		log.Fatalln(err)
+	log.Fatalln(err)
 	}
 
 	fmt.Println("Done! 🎉")
