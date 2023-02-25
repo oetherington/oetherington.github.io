@@ -89,7 +89,7 @@ func (r *HeadingHTMLRenderer) renderHeading(
 	return ast.WalkContinue, nil
 }
 
-func renderMarkdownFile(path string) (Node, Node, error) {
+func renderMarkdownFile(palette Palette, path string) (Node, Node, error) {
 	file, err := os.Open(path)
 	if err != nil {
 		return nil, nil, err
@@ -102,16 +102,17 @@ func renderMarkdownFile(path string) (Node, Node, error) {
 		return nil, nil, err
 	}
 
+	theme, err := createHighlightStyles(palette)
+	if err != nil {
+		return nil, nil, err
+	}
+
 	markdown := goldmark.New(
 		goldmark.WithExtensions(
 			extension.GFM,
 			highlighting.NewHighlighting(
-				highlighting.WithStyle("monokai"),
-				// highlighting.WithFormatOptions(
-					// html.WithLineNumbers(),
-				// ),
+				highlighting.WithCustomStyle(theme),
 			),
-			// highlighting.Highlighting,
 		),
 		goldmark.WithParserOptions(
 			parser.WithAutoHeadingID(),

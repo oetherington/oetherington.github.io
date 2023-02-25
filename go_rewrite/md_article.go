@@ -7,7 +7,7 @@ import (
 
 func MdArticle(palette Palette, articleInfo ArticleInfo) HtmlNode {
 	mdPath := fmt.Sprintf("./articles/%s.md", articleInfo.Path)
-	md, contents, err := renderMarkdownFile(mdPath)
+	md, contents, err := renderMarkdownFile(palette, mdPath)
 	if err != nil {
 		fmt.Println(err)
 	}
