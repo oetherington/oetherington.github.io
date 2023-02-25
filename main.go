@@ -10,7 +10,7 @@ import (
 )
 
 const PUBLIC_DIR = "./public"
-const OUTPUT_DIR = "./docs"
+const OUTPUT_DIR = "./build"
 
 func writeString(value string, targetName string) error {
 	targetPath := fmt.Sprintf("%s/%s", OUTPUT_DIR, targetName)
