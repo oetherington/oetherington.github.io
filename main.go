@@ -74,7 +74,10 @@ func main() {
 	darkPalette := createDarkPalette()
 
 	fmt.Println("Compiling styles")
-	styles := createStyles(darkPalette)
+	styles, err := createStyles(darkPalette)
+	if err != nil {
+		log.Fatalln(err)
+	}
 	if err := generateCss(styles, "css/styles.css"); err != nil {
 		log.Fatalln(err)
 	}

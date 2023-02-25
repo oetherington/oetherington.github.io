@@ -5,8 +5,13 @@ import (
 	. "github.com/oetherington/smetana"
 )
 
-func createStyles(palette Palette) StyleSheet {
+func createStyles(palette Palette) (StyleSheet, error) {
+	mdCss, err := renderMarkdownCss(palette, "")
+	if err != nil {
+		return StyleSheet{}, err
+	}
 	styles := NewStyleSheet(
+		StylesCss(mdCss),
 		StylesFontFace(
 			"Unifont",
 			"UnifontLatin.woff2",
@@ -175,5 +180,5 @@ func createStyles(palette Palette) StyleSheet {
 			"color": palette.green,
 		}),
 	)
-	return styles
+	return styles, nil
 }
