@@ -1,18 +1,17 @@
 # www.etherington.io
 
-This repo contains the source and content for www.etherington.io. The content
-is written dynamically, but is then compiled and served statically.
+This repo contains the source and content for www.etherington.io. The site
+is written using [Smetana](https://github.com/oetherington/smetana) and is
+compiled into the static `/build/` directory to be served by Github Pages.
 
-In order to be served by github pages, the compiled output is in the "docs"
-directory, which should therefore not be edited manually.
+Articles are written in Markdown and a sitemap is automatically generated using
+the git history to get the last modified date for each page.
 
-A sitemap is automatically generated using the git history to get the last
-modified date for each file.
+The only dependencies are `go` and `git`.
 
-#### Install build dependencies
+### Commands
 
-`make install-deps`
-
-#### Build the site
-
-`make`
+ - Build the site: `make run`
+ - Run the linter: `make lint`
+ - Check the code formatting: `make check-fmt`
+ - Run the dev server on port 8000: `make serve`
