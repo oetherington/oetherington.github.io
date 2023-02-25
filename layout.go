@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"time"
+
 	. "github.com/oetherington/smetana"
 )
 
@@ -15,6 +17,7 @@ func formatTitle(title string) string {
 }
 
 func Layout(palette Palette, title string, content Node) HtmlNode {
+	now := time.Now()
 	return Html(
 		Head(
 			Charset(""),
@@ -95,7 +98,10 @@ func Layout(palette Palette, title string, content Node) HtmlNode {
 			content,
 			Div(
 				ClassNames("content", "footer"),
-				P("Copyright &#169; 2009-2022 Ollie Etherington."),
+				P(fmt.Sprintf(
+					"Copyright &#169; 2009-%d Ollie Etherington.",
+					now.Year(),
+				)),
 				P("All content is <a href=\"https://creativecommons.org/licenses/by-nc-sa/4.0/\">CC BY-NC-SA 4.0</a> unless otherwise stated."),
 			),
 			Br(),
