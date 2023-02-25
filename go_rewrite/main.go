@@ -94,4 +94,6 @@ func main() {
 	if err := generateHtml(sitemap, "sitemap.xml"); err != nil {
 		log.Fatalln(err)
 	}
+
+	fmt.Println("Done! 🎉")
 }
