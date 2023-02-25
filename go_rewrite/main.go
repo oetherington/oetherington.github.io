@@ -80,4 +80,18 @@ func main() {
 			log.Fatalln(err)
 		}
 	}
+
+	fmt.Println("Compiling sitemap")
+	baseUrl := "https://www.etherington.io/"
+	staticRoutes := []StaticRoute{
+		{"", "./index.go"},
+	}
+	locations, err := getSitemapLocations(baseUrl, staticRoutes, articleInfo)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	sitemap := Sitemap(locations)
+	if err := generateHtml(sitemap, "sitemap.xml"); err != nil {
+		log.Fatalln(err)
+	}
 }
