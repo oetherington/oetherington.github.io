@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
-	. "github.com/oetherington/smetana"
 	"os/exec"
+	"sync"
+
+	. "github.com/oetherington/smetana"
 )
 
 type SitemapLocation struct {
@@ -11,21 +13,28 @@ type SitemapLocation struct {
 	modified string
 }
 
-func getFileModifiedDate(filePath string) (string, error) {
+func newSitemapLocation(
+	baseUrl string,
+	pageUrl string,
+	srcFile string,
+) (SitemapLocation, error) {
 	args := []string{
 		"log",
 		"-1",
 		"--pretty=format:%aI",
 		"--follow",
 		"--",
-		filePath,
+		srcFile,
 	}
 	result := exec.Command("git", args...)
 	stdout, err := result.Output()
 	if err != nil {
-		return "", err
+		return SitemapLocation{}, err
 	}
-	return string(stdout), nil
+	return SitemapLocation{
+		url:      fmt.Sprintf("%s%s", baseUrl, pageUrl),
+		modified: string(stdout),
+	}, nil
 }
 
 type StaticRoute struct {
@@ -33,37 +42,58 @@ type StaticRoute struct {
 	srcFile string
 }
 
+func countLocations(staticRoutes []StaticRoute, articles []ArticleInfo) int {
+	count := len(staticRoutes)
+	for _, article := range articles {
+		if article.Published {
+			count++
+		}
+	}
+	return count
+}
+
 func getSitemapLocations(
 	baseUrl string,
 	staticRoutes []StaticRoute,
 	articles []ArticleInfo,
 ) ([]SitemapLocation, error) {
-	locations := []SitemapLocation{}
+	count := countLocations(staticRoutes, articles)
+	locations := make([]SitemapLocation, count)
+	errors := make([]error, count)
 
-	for _, route := range staticRoutes {
-		modified, err := getFileModifiedDate(route.srcFile)
-		if err != nil {
-			return nil, err
-		}
-		locations = append(locations, SitemapLocation{
-			url:      fmt.Sprintf("%s%s", baseUrl, route.url),
-			modified: modified,
-		})
+	var wg sync.WaitGroup
+
+	for i, route := range staticRoutes {
+		wg.Add(1)
+		go func(i int, route StaticRoute) {
+			loc, err := newSitemapLocation(baseUrl, route.url, route.srcFile)
+			locations[i] = loc
+			errors[i] = err
+			wg.Done()
+		}(i, route)
 	}
 
-	for _, article := range articles {
+	for i, article := range articles {
 		if !article.Published {
 			continue
 		}
-		filePath := fmt.Sprintf("./articles/%s.md", article.Path)
-		modified, err := getFileModifiedDate(filePath)
+		wg.Add(1)
+		go func(i int, article ArticleInfo) {
+			filePath := fmt.Sprintf("./articles/%s.md", article.Path)
+			loc, err := newSitemapLocation(baseUrl, article.Path, filePath)
+			index := len(staticRoutes) + i
+			locations[index] = loc
+			errors[index] = err
+			wg.Done()
+		}(i, article)
+	}
+
+	wg.Wait()
+
+	for _, err := range errors {
 		if err != nil {
 			return nil, err
 		}
-		locations = append(locations, SitemapLocation{
-			url:      fmt.Sprintf("%s%s", baseUrl, article.Path),
-			modified: modified,
-		})
 	}
 
 	return locations, nil
