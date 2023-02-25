@@ -73,4 +73,3 @@ func createHighlightStyles(palette Palette) (*chroma.Style, error) {
 	builder.AddEntry(chroma.Text, fgHighlight(palette.white))
 	return builder.Build()
 }
-
