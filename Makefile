@@ -25,6 +25,6 @@ docs:
 	godoc -http=127.0.0.1:6060
 
 serve:
-	caddy file-server --root build --listen :8000
+	caddy run
 
 check: test lint check-fmt

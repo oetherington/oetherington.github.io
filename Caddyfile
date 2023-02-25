@@ -1,0 +1,6 @@
+:8000 {
+	encode zstd gzip
+	root * ./build
+	try_files {path}.html
+	file_server
+}
