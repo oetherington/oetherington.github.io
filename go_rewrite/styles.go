@@ -25,9 +25,15 @@ func createStyles(palette Palette) StyleSheet {
 				body { width: 100%; }
 			}
 		`),
+		// TODO: These 2 should use OrderedCssProps
 		StylesBlock("hr", CssProps{
-			"border":     "none",
-			"border-top": fmt.Sprintf("1px dashed %s", palette.lightGrey.ToCssColor()),
+			"border": "none",
+		}),
+		StylesBlock("hr", CssProps{
+			"border-top": fmt.Sprintf(
+				"1px dashed %s",
+				palette.lightGrey.ToCssColor(),
+			),
 		}),
 		StylesBlock("h2", CssProps{
 			"color": palette.lightYellow,
@@ -85,7 +91,10 @@ func createStyles(palette Palette) StyleSheet {
 			"border-spacing": "1.5em 0.1em",
 		}),
 		StylesBlock("th", CssProps{
-			"border-bottom": fmt.Sprintf("1px dashed %s", palette.lightGrey.ToCssColor()),
+			"border-bottom": fmt.Sprintf(
+				"1px dashed %s",
+				palette.lightGrey.ToCssColor(),
+			),
 		}),
 		StylesCss(`
 			@keyframes blink {
