@@ -15,7 +15,7 @@ func createStyles(palette Palette) StyleSheet {
 		),
 		StylesBlock("body", CssProps{
 			"font-family": "Unifont, monospace",
-			"background":  palette.offBlack,
+			"background":  palette.background,
 			"color":       palette.white,
 			"width":       Perc(90),
 			"margin":      "auto",
@@ -156,8 +156,14 @@ func createStyles(palette Palette) StyleSheet {
 			"white-space": "0",
 		}),
 		StylesBlock("ul", CssProps{
-			"list-style": `"- "`,
+			"list-style":      `"- "`,
 			"list-style-type": `"- "`,
+		}),
+		StylesBlock(".code-lit", CssProps{
+			"color": palette.darkYellow,
+		}),
+		StylesBlock(".code-fn", CssProps{
+			"color": palette.green,
 		}),
 	)
 	return styles

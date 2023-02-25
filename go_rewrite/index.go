@@ -54,7 +54,17 @@ func Index(articleInfo []ArticleInfo) FragmentNode {
 				P(
 					ClassName("tall"),
 					"Email:&nbsp;",
-					Code("['o','l','l','i','e'].join('').concat('@etherington.xyz')"),
+					Code(
+						Span(ClassName("code-lit"), "['o','l','l','i','e']"),
+						Span(ClassName("code-fn"), ".join"),
+						"(",
+						Span(ClassName("code-lit"), "''"),
+						")",
+						Span(ClassName("code-fn"), ".concat"),
+						"(",
+						Span(ClassName("code-lit"), "'@etherington.xyz'"),
+						")",
+					),
 				),
 			),
 		),

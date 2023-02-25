@@ -5,6 +5,7 @@ import (
 )
 
 type Palette struct {
+	background  Color
 	black       Color
 	offBlack    Color
 	white       Color
@@ -23,8 +24,22 @@ type Palette struct {
 	red         Color
 }
 
+/*
+New palette?:
+	#282a36
+	#686868
+	#FF5C57
+	#5AF78E
+	#F3F99D
+	#57C7FF
+	#FF6AC1
+	#9AEDFE
+	#EFF0EB
+*/
+
 func createPalette() Palette {
 	return Palette{
+		background:  Hex("#282a36"),
 		black:       Hex("#000"),
 		offBlack:    Hex("#222"),
 		white:       Hex("#fff"),
