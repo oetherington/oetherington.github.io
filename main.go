@@ -88,7 +88,7 @@ func main() {
 		writeString(css, path)
 	}
 	if err := generateCss(createPrintStyles(), "css/print.css"); err != nil {
-	log.Fatalln(err)
+		log.Fatalln(err)
 	}
 
 	fmt.Println("Compiling index")
