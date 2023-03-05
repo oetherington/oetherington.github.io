@@ -4,7 +4,7 @@ test:
 	go test -v -coverprofile=coverage.out
 
 lint:
-	go vet .
+	golangci-lint run ./...
 
 fmt:
 	go fmt .

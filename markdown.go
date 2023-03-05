@@ -3,7 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"strings"
 
@@ -51,17 +51,15 @@ func (r *HeadingHTMLRenderer) renderHeading(
 
 	id := ""
 	attrs := n.Attributes()
-	if attrs != nil {
-		for _, attr := range attrs {
-			if bytes.Equal(attr.Name, []byte{'i', 'd'}) {
-				switch value := attr.Value.(type) {
-				case string:
-					id = value
-				case []byte:
-					id = string(value)
-				default:
-					break
-				}
+	for _, attr := range attrs {
+		if bytes.Equal(attr.Name, []byte{'i', 'd'}) {
+			switch value := attr.Value.(type) {
+			case string:
+				id = value
+			case []byte:
+				id = string(value)
+			default:
+				break
 			}
 		}
 	}
@@ -98,7 +96,7 @@ func renderMarkdownFile(path string) (Node, Node, error) {
 
 	defer file.Close()
 
-	src, err := ioutil.ReadAll(file)
+	src, err := io.ReadAll(file)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -143,7 +141,10 @@ func renderMarkdownFile(path string) (Node, Node, error) {
 	}
 
 	var output strings.Builder
-	markdown.Renderer().Render(&output, src, doc)
+	err = markdown.Renderer().Render(&output, src, doc)
+	if err != nil {
+		return nil, nil, err
+	}
 
 	return Text(output.String()), contents, nil
 }

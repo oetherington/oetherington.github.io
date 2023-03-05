@@ -7,6 +7,7 @@ import (
 )
 
 func fgBgStyle(fg string, bg string) CssProps {
+	//nolint:govet
 	return CssProps{
 		{"color", PaletteValue(fg)},
 		{"background-color", PaletteValue(bg)},
@@ -15,21 +16,25 @@ func fgBgStyle(fg string, bg string) CssProps {
 
 func bgStyle(bg string) CssProps {
 	return CssProps{
+		//nolint:govet
 		{"background-color", PaletteValue(bg)},
 	}
 }
 
 func fgStyle(fg string) CssProps {
 	return CssProps{
+		//nolint:govet
 		{"color", PaletteValue(fg)},
 	}
 }
 
 func italicStyle() CssProps {
+	//nolint:govet
 	return CssProps{{"font-style", "italic"}}
 }
 
 func boldStyle() CssProps {
+	//nolint:govet
 	return CssProps{{"font-weight", "bold"}}
 }
 

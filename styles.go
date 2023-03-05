@@ -5,6 +5,7 @@ import (
 )
 
 func createStyles() StyleSheet {
+	//nolint:govet
 	styles := NewStyleSheet(
 		StylesFontFace(
 			"Unifont",
@@ -177,6 +178,7 @@ func createStyles() StyleSheet {
 }
 
 func createPrintStyles() StyleSheet {
+	//nolint:govet
 	styles := NewStyleSheet(
 		StylesBlock("svg", CssProps{
 			{"display", "none"},

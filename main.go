@@ -85,7 +85,10 @@ func main() {
 	styles := CONTEXT.RenderStyles()
 	for name, css := range styles {
 		path := fmt.Sprintf("css/%s.css", name)
-		writeString(css, path)
+		err = writeString(css, path)
+		if err != nil {
+			log.Fatalln(err)
+		}
 	}
 	if err := generateCss(createPrintStyles(), "css/print.css"); err != nil {
 		log.Fatalln(err)
