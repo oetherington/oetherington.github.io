@@ -16,7 +16,7 @@ func formatTitle(title string) string {
 	return fmt.Sprintf("%s | %s", title, DEFAULT_TITLE)
 }
 
-func Layout(palette Palette, title string, content Node) HtmlNode {
+func Layout(title string, content Node) HtmlNode {
 	now := time.Now()
 	return Html(
 		Head(
@@ -42,8 +42,8 @@ func Layout(palette Palette, title string, content Node) HtmlNode {
 			Author("Ollie Etherington"),
 			Keywords("ollie,oliver,etherington,london,oxford,programmer"),
 			Viewport(""),
-			Meta("msapplication-TileColor", palette.pink.ToCssColor()),
-			Meta("theme-color", palette.white.ToCssColor()),
+			Meta("msapplication-TileColor", MS_TILE_COLOR.String()),
+			Meta("theme-color", THEME_COLOR.String()),
 			Link(Attrs{
 				"rel":  "shortcut icon",
 				"href": "/favicon.ico?",
@@ -69,7 +69,7 @@ func Layout(palette Palette, title string, content Node) HtmlNode {
 			Link(Attrs{
 				"rel":   "mask-icon",
 				"href":  "/safari-pinned-tab.svg",
-				"color": palette.grey.ToCssColor(),
+				"color": MASK_COLOR.String(),
 			}),
 			LinkHref("manifest", "/site.webmanifest"),
 		),

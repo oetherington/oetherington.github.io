@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
-	"regexp"
 	"strings"
 
 	chromahtml "github.com/alecthomas/chroma/v2/formatters/html"
@@ -109,7 +108,7 @@ func renderMarkdownFile(path string) (Node, Node, error) {
 			extension.GFM,
 			highlighting.NewHighlighting(
 				highlighting.WithFormatOptions(
-					chromahtml.WithClasses(true),
+					chromahtml.WithAllClasses(true),
 					chromahtml.WithLineNumbers(false),
 				),
 			),
@@ -147,56 +146,4 @@ func renderMarkdownFile(path string) (Node, Node, error) {
 	markdown.Renderer().Render(&output, src, doc)
 
 	return Text(output.String()), contents, nil
-}
-
-func renderMarkdownCss(palette Palette, prefixClass string) (string, error) {
-	theme, err := createHighlightStyles(palette)
-	if err != nil {
-		return "", err
-	}
-
-	var buf bytes.Buffer
-
-	markdown := goldmark.New(
-		goldmark.WithExtensions(
-			extension.GFM,
-			highlighting.NewHighlighting(
-				highlighting.WithCustomStyle(theme),
-				highlighting.WithCSSWriter(&buf),
-				highlighting.WithFormatOptions(
-					chromahtml.WithClasses(true),
-					chromahtml.WithLineNumbers(false),
-				),
-			),
-		),
-		goldmark.WithParserOptions(
-			parser.WithAutoHeadingID(),
-		),
-		goldmark.WithRendererOptions(
-			html.WithUnsafe(),
-		),
-	)
-
-	src := "```c\nvoid\n```"
-
-	var dummy bytes.Buffer
-	if err := markdown.Convert([]byte(src), &dummy); err != nil {
-		return "", nil
-	}
-
-	css := buf.String()
-
-	m, err := regexp.Compile("\\/\\*.*\\*\\/\\s")
-	if err != nil {
-		return "", err
-	}
-	css = m.ReplaceAllString(css, prefixClass)
-
-	m, err = regexp.Compile("\\n")
-	if err != nil {
-		return "", err
-	}
-	css = m.ReplaceAllString(css, "")
-
-	return css, nil
 }

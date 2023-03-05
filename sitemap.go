@@ -4,14 +4,10 @@ import (
 	"fmt"
 	"os/exec"
 	"sync"
+	"time"
 
 	. "github.com/oetherington/smetana"
 )
-
-type SitemapLocation struct {
-	url      string
-	modified string
-}
 
 func newSitemapLocation(
 	baseUrl string,
@@ -31,10 +27,12 @@ func newSitemapLocation(
 	if err != nil {
 		return SitemapLocation{}, err
 	}
-	return SitemapLocation{
-		url:      fmt.Sprintf("%s%s", baseUrl, pageUrl),
-		modified: string(stdout),
-	}, nil
+	url := fmt.Sprintf("%s%s", baseUrl, pageUrl)
+	modified, err := time.Parse(time.RFC3339, string(stdout))
+	if err != nil {
+		return SitemapLocation{}, err
+	}
+	return SitemapLocationMod(url, modified), nil
 }
 
 type StaticRoute struct {
@@ -52,11 +50,11 @@ func countLocations(staticRoutes []StaticRoute, articles []ArticleInfo) int {
 	return count
 }
 
-func getSitemapLocations(
+func getSitemap(
 	baseUrl string,
 	staticRoutes []StaticRoute,
 	articles []ArticleInfo,
-) ([]SitemapLocation, error) {
+) (Sitemap, error) {
 	count := countLocations(staticRoutes, articles)
 	locations := make([]SitemapLocation, count)
 	errors := make([]error, count)
@@ -97,25 +95,4 @@ func getSitemapLocations(
 	}
 
 	return locations, nil
-}
-
-type SitemapNode struct {
-	locations []SitemapLocation
-}
-
-func (node SitemapNode) ToHtml(builder *Builder) {
-	builder.Buf.WriteString("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")
-	builder.Buf.WriteString("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n")
-	for _, loc := range node.locations {
-		builder.Buf.WriteString(fmt.Sprintf(
-			" <url>\n  <loc>%s</loc>\n  <lastmod>%s</lastmod>\n </url>\n",
-			loc.url,
-			loc.modified,
-		))
-	}
-	builder.Buf.WriteString("</urlset>\n")
-}
-
-func Sitemap(locations []SitemapLocation) SitemapNode {
-	return SitemapNode{locations}
 }

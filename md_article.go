@@ -5,7 +5,7 @@ import (
 	. "github.com/oetherington/smetana"
 )
 
-func MdArticle(palette Palette, articleInfo ArticleInfo) HtmlNode {
+func MdArticle(articleInfo ArticleInfo) HtmlNode {
 	mdPath := fmt.Sprintf("./articles/%s.md", articleInfo.Path)
 	md, contents, err := renderMarkdownFile(mdPath)
 	if err != nil {
@@ -13,7 +13,6 @@ func MdArticle(palette Palette, articleInfo ArticleInfo) HtmlNode {
 	}
 
 	return Layout(
-		palette,
 		articleInfo.Name,
 		Fragment(
 			Div(

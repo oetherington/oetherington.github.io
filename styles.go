@@ -1,17 +1,11 @@
 package main
 
 import (
-	"fmt"
 	. "github.com/oetherington/smetana"
 )
 
-func createStyles(palette Palette, prefixClass string) (StyleSheet, error) {
-	mdCss, err := renderMarkdownCss(palette, prefixClass)
-	if err != nil {
-		return StyleSheet{}, err
-	}
+func createStyles() StyleSheet {
 	styles := NewStyleSheet(
-		StylesCss(mdCss),
 		StylesFontFace(
 			"Unifont",
 			"UnifontLatin.woff2",
@@ -19,87 +13,84 @@ func createStyles(palette Palette, prefixClass string) (StyleSheet, error) {
 			"UnifontLatin.ttf",
 		),
 		StylesBlock("body", CssProps{
-			"font-family": "Unifont, monospace",
-			"background":  palette.background,
-			"color":       palette.white,
-			"width":       Perc(90),
-			"margin":      "auto",
+			{"font-family", "Unifont, monospace"},
+			{"background", PaletteValue("background")},
+			{"color", PaletteValue("white")},
+			{"width", Perc(90)},
+			{"margin", "auto"},
 		}),
 		StylesCss(`
 			@media only screen and (max-width: 600px) {
 				body { width: 100%; }
 			}
 		`),
-		// TODO: These 2 should use OrderedCssProps
 		StylesBlock("hr", CssProps{
-			"border": "none",
-		}),
-		StylesBlock("hr", CssProps{
-			"border-top": fmt.Sprintf(
-				"1px dashed %s",
-				palette.grey.ToCssColor(),
-			),
+			{"border", "none"},
+			{
+				"border-top",
+				PalettePrintf("1px dashed %s", PaletteValue("grey")),
+			},
 		}),
 		StylesBlock("h2", CssProps{
-			"color": palette.yellow,
+			{"color", PaletteValue("yellow")},
 		}),
 		StylesBlock("h4", CssProps{
-			"color": palette.pink,
+			{"color", PaletteValue("pink")},
 		}),
 		StylesBlock("a", CssProps{
-			"color":      palette.lightBlue,
-			"transition": "color 0.2s",
+			{"color", PaletteValue("lightBlue")},
+			{"transition", "color 0.2s"},
 		}),
 		StylesBlock("a:hover", CssProps{
-			"color": palette.pink,
+			{"color", PaletteValue("pink")},
 		}),
 		StylesBlock("a svg", CssProps{
-			"fill":       palette.lightBlue,
-			"transition": "fill 0.2s",
+			{"fill", PaletteValue("lightBlue")},
+			{"transition", "fill 0.2s"},
 		}),
 		StylesBlock("a svg:hover", CssProps{
-			"fill": palette.pink,
+			{"fill", PaletteValue("pink")},
 		}),
 		StylesBlock("h1 a", CssProps{
-			"color":           palette.white,
-			"text-decoration": "none !important",
+			{"color", PaletteValue("white")},
+			{"text-decoration", "none !important"},
 		}),
 		StylesBlock("h1 a:hover", CssProps{
-			"color": palette.lightBlue,
+			{"color", PaletteValue("lightBlue")},
 		}),
 		StylesBlock("h2 a", CssProps{
-			"color":           palette.yellow,
-			"text-decoration": "none !important",
+			{"color", PaletteValue("yellow")},
+			{"text-decoration", "none !important"},
 		}),
 		StylesBlock("h2 a:hover", CssProps{
-			"color": palette.pink,
+			{"color", PaletteValue("pink")},
 		}),
 		StylesBlock("svg", CssProps{
-			"margin": "0 0.3em -0.2em 0.3em",
+			{"margin", "0 0.3em -0.2em 0.3em"},
 		}),
 		StylesBlock(".link-icons", CssProps{
-			"float":       "right",
-			"font-size":   EM(2),
-			"display":     "flex",
-			"align-items": "center",
-			"gap":         EM(0.2),
+			{"float", "right"},
+			{"font-size", EM(2)},
+			{"display", "flex"},
+			{"align-items", "center"},
+			{"gap", EM(0.2)},
 		}),
 		StylesBlock(".link-icons svg", CssProps{
-			"fill":  palette.yellow,
-			"width": EM(1.1),
+			{"fill", PaletteValue("yellow")},
+			{"width", EM(1.1)},
 		}),
 		StylesBlock(".inline-icon svg", CssProps{
-			"width": EM(1),
+			{"width", EM(1)},
 		}),
 		StylesBlock("table", CssProps{
-			"text-align":     "left",
-			"border-spacing": "1.5em 0.1em",
+			{"text-align", "left"},
+			{"border-spacing", "1.5em 0.1em"},
 		}),
 		StylesBlock("th", CssProps{
-			"border-bottom": fmt.Sprintf(
-				"1px dashed %s",
-				palette.grey.ToCssColor(),
-			),
+			{
+				"border-bottom",
+				PalettePrintf("1px dashed %s", PaletteValue("grey")),
+			},
 		}),
 		StylesCss(`
 			@keyframes blink {
@@ -108,39 +99,39 @@ func createStyles(palette Palette, prefixClass string) (StyleSheet, error) {
 			}
 		`),
 		StylesBlock(".cursor", CssProps{
-			"animation": "blink 1.5s steps(1,end) 0s infinite none",
+			{"animation", "blink 1.5s steps(1,end) 0s infinite none"},
 		}),
 		StylesBlock("h2 .cursor", CssProps{
-			"background": palette.yellow,
+			{"background", PaletteValue("yellow")},
 		}),
 		StylesBlock("h2 a:hover .cursor", CssProps{
-			"background": palette.pink,
+			{"background", PaletteValue("pink")},
 		}),
 		StylesBlock(".content-full", CssProps{
-			"padding": "0 2ch",
+			{"padding", "0 2ch"},
 		}),
 		StylesBlock(".content", CssProps{
-			"padding":       "0 2ch",
-			"max-width":     CH(80),
-			"overflow-wrap": "break-word",
+			{"padding", "0 2ch"},
+			{"max-width", CH(80)},
+			{"overflow-wrap", "break-word"},
 		}),
 		StylesBlock(".content h1:not(:first-child)", CssProps{
-			"margin-top": EM(2),
+			{"margin-top", EM(2)},
 		}),
 		StylesBlock(".center", CssProps{
-			"text-align": "center",
+			{"text-align", "center"},
 		}),
 		StylesBlock(".centered", CssProps{
-			"margin": "0 auto",
+			{"margin", "0 auto"},
 		}),
 		StylesBlock(".tall", CssProps{
-			"line-height": EM(1.5),
+			{"line-height", EM(1.5)},
 		}),
 		StylesBlock(".footer", CssProps{
-			"font-size":   EM(0.8),
-			"line-height": Perc(90),
-			"text-align":  "center",
-			"margin":      "12ch auto 0 auto",
+			{"font-size", EM(0.8)},
+			{"line-height", Perc(90)},
+			{"text-align", "center"},
+			{"margin", "12ch auto 0 auto"},
 		}),
 		StylesCss(`
 			@media only screen and (max-width: 600px) {
@@ -148,45 +139,47 @@ func createStyles(palette Palette, prefixClass string) (StyleSheet, error) {
 			}
 		`),
 		StylesBlock(".todo", CssProps{
-			"background":    palette.black,
-			"color":         palette.yellow,
-			"padding":       EM(0.15),
-			"border-radius": EM(0.2),
+			{"background", PaletteValue("black")},
+			{"color", PaletteValue("yellow")},
+			{"padding", EM(0.15)},
+			{"border-radius", EM(0.2)},
 		}),
 		StylesBlock("code", CssProps{
-			"background":    palette.black,
-			"font-family":   "Unifont, monospace",
-			"padding":       EM(0.15),
-			"border-radius": EM(0.2),
+			{"background", PaletteValue("black")},
+			{"font-family", "Unifont, monospace"},
+			{"padding", EM(0.15)},
+			{"border-radius", EM(0.2)},
 		}),
 		StylesBlock("pre", CssProps{
-			"background":    palette.black,
-			"padding":       EM(0.5),
-			"border-radius": EM(1),
-			"white-space":   "pre-wrap",
+			{"background", PaletteValue("black")},
+			{"padding", EM(0.5)},
+			{"border-radius", EM(1)},
+			{"white-space", "pre-wrap"},
 		}),
 		StylesBlock("pre code", CssProps{
-			"padding":     "0",
-			"white-space": "0",
+			{"padding", "0"},
+			{"white-space", "0"},
 		}),
 		StylesBlock("ul", CssProps{
-			"list-style":      `"- "`,
-			"list-style-type": `"- "`,
+			{"list-style", `"- "`},
+			{"list-style-type", `"- "`},
 		}),
 		StylesBlock(".code-lit", CssProps{
-			"color": palette.yellow,
+			{"color", PaletteValue("yellow")},
 		}),
 		StylesBlock(".code-fn", CssProps{
-			"color": palette.green,
+			{"color", PaletteValue("green")},
 		}),
 	)
-	return styles, nil
+	highlightingStyles := renderHighlightingCss()
+	styles.Elements = append(styles.Elements, highlightingStyles.Elements...)
+	return styles
 }
 
 func createPrintStyles() StyleSheet {
 	styles := NewStyleSheet(
 		StylesBlock("svg", CssProps{
-			"display": "none",
+			{"display", "none"},
 		}),
 	)
 	return styles

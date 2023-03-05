@@ -1,75 +1,101 @@
 package main
 
 import (
+	"fmt"
 	"github.com/alecthomas/chroma/v2"
-	"github.com/oetherington/smetana"
+	. "github.com/oetherington/smetana"
 )
 
-func convertColor(c smetana.Color) chroma.Colour {
-	rgba := c.ToRgba()
-	value := (int32(rgba.R) << 16) | (int32(rgba.G) << 8) | int32(rgba.B)
-	return chroma.Colour(value)
-}
-
-func fgHighlight(fg smetana.Color) chroma.StyleEntry {
-	return chroma.StyleEntry{
-		Colour: convertColor(fg),
+func fgBgStyle(fg string, bg string) CssProps {
+	return CssProps{
+		{"color", PaletteValue(fg)},
+		{"background-color", PaletteValue(bg)},
 	}
 }
 
-func bgHighlight(bg smetana.Color) chroma.StyleEntry {
-	return chroma.StyleEntry{
-		Background: convertColor(bg),
+func bgStyle(bg string) CssProps {
+	return CssProps{
+		{"background-color", PaletteValue(bg)},
 	}
 }
 
-func fgBgHighlight(fg smetana.Color, bg smetana.Color) chroma.StyleEntry {
-	return chroma.StyleEntry{
-		Colour:     convertColor(fg),
-		Background: convertColor(fg),
+func fgStyle(fg string) CssProps {
+	return CssProps{
+		{"color", PaletteValue(fg)},
 	}
 }
 
-func italicHighlight() chroma.StyleEntry {
-	return chroma.StyleEntry{
-		Italic: chroma.Yes,
+func italicStyle() CssProps {
+	return CssProps{{"font-style", "italic"}}
+}
+
+func boldStyle() CssProps {
+	return CssProps{{"font-weight", "bold"}}
+}
+
+type HighlightTheme map[chroma.TokenType]CssProps
+
+func (theme HighlightTheme) GetForToken(token chroma.TokenType) CssProps {
+	if value := theme[token]; value != nil {
+		return value
+	}
+
+	token = token.SubCategory()
+	if value := theme[token]; value != nil {
+		return value
+	}
+
+	token = token.Category()
+	if value := theme[token]; value != nil {
+		return value
+	}
+
+	return CssProps{}
+}
+
+func createHighlightTheme() HighlightTheme {
+	return HighlightTheme{
+		chroma.Error:               fgBgStyle("white", "red"),
+		chroma.Background:          bgStyle("black"),
+		chroma.Keyword:             fgStyle("darkBlue"),
+		chroma.KeywordNamespace:    fgStyle("pink"),
+		chroma.Name:                fgStyle("white"),
+		chroma.NameAttribute:       fgStyle("green"),
+		chroma.NameClass:           fgStyle("green"),
+		chroma.NameConstant:        fgStyle("darkBlue"),
+		chroma.NameDecorator:       fgStyle("green"),
+		chroma.NameException:       fgStyle("green"),
+		chroma.NameFunction:        fgStyle("green"),
+		chroma.NameOther:           fgStyle("green"),
+		chroma.NameTag:             fgStyle("pink"),
+		chroma.Literal:             fgStyle("lightBlue"),
+		chroma.LiteralDate:         fgStyle("yellow"),
+		chroma.LiteralString:       fgStyle("yellow"),
+		chroma.LiteralStringEscape: fgStyle("lightBlue"),
+		chroma.LiteralNumber:       fgStyle("lightBlue"),
+		chroma.Operator:            fgStyle("pink"),
+		chroma.Punctuation:         fgStyle("white"),
+		chroma.Comment:             fgStyle("grey"),
+		chroma.GenericDeleted:      fgStyle("red"),
+		chroma.GenericInserted:     fgStyle("green"),
+		chroma.GenericSubheading:   fgStyle("grey"),
+		chroma.GenericEmph:         italicStyle(),
+		chroma.GenericStrong:       boldStyle(),
+		chroma.Text:                fgStyle("white"),
 	}
 }
 
-func boldHighlight() chroma.StyleEntry {
-	return chroma.StyleEntry{
-		Bold: chroma.Yes,
+func renderHighlightingCss() StyleSheet {
+	styles := NewStyleSheet()
+	theme := createHighlightTheme()
+	for token, className := range chroma.StandardTypes {
+		switch token {
+		case chroma.Background, chroma.PreWrapper, chroma.Text:
+			continue
+		}
+		style := theme.GetForToken(token)
+		selector := fmt.Sprintf(".chroma .%s", className)
+		styles.AddBlock(selector, style)
 	}
-}
-
-func createHighlightStyles(palette Palette) (*chroma.Style, error) {
-	builder := chroma.NewStyleBuilder("oetherington")
-	builder.AddEntry(chroma.Error, fgBgHighlight(palette.white, palette.red))
-	builder.AddEntry(chroma.Background, bgHighlight(palette.black))
-	builder.AddEntry(chroma.Keyword, fgHighlight(palette.darkBlue))
-	builder.AddEntry(chroma.KeywordNamespace, fgHighlight(palette.pink))
-	builder.AddEntry(chroma.Name, fgHighlight(palette.white))
-	builder.AddEntry(chroma.NameAttribute, fgHighlight(palette.green))
-	builder.AddEntry(chroma.NameClass, fgHighlight(palette.green))
-	builder.AddEntry(chroma.NameConstant, fgHighlight(palette.darkBlue))
-	builder.AddEntry(chroma.NameDecorator, fgHighlight(palette.green))
-	builder.AddEntry(chroma.NameException, fgHighlight(palette.green))
-	builder.AddEntry(chroma.NameFunction, fgHighlight(palette.green))
-	builder.AddEntry(chroma.NameOther, fgHighlight(palette.green))
-	builder.AddEntry(chroma.NameTag, fgHighlight(palette.pink))
-	builder.AddEntry(chroma.Literal, fgHighlight(palette.lightBlue))
-	builder.AddEntry(chroma.LiteralDate, fgHighlight(palette.yellow))
-	builder.AddEntry(chroma.LiteralString, fgHighlight(palette.yellow))
-	builder.AddEntry(chroma.LiteralStringEscape, fgHighlight(palette.lightBlue))
-	builder.AddEntry(chroma.LiteralNumber, fgHighlight(palette.lightBlue))
-	builder.AddEntry(chroma.Operator, fgHighlight(palette.pink))
-	builder.AddEntry(chroma.Punctuation, fgHighlight(palette.white))
-	builder.AddEntry(chroma.Comment, fgHighlight(palette.grey))
-	builder.AddEntry(chroma.GenericDeleted, fgHighlight(palette.red))
-	builder.AddEntry(chroma.GenericInserted, fgHighlight(palette.green))
-	builder.AddEntry(chroma.GenericSubheading, fgHighlight(palette.grey))
-	builder.AddEntry(chroma.GenericEmph, italicHighlight())
-	builder.AddEntry(chroma.GenericStrong, boldHighlight())
-	builder.AddEntry(chroma.Text, fgHighlight(palette.white))
-	return builder.Build()
+	return styles
 }

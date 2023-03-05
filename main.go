@@ -9,6 +9,11 @@ import (
 	"github.com/otiai10/copy"
 )
 
+var CONTEXT = smetana.NewSmetanaWithPalettes(smetana.Palettes{
+	"dark":  createDarkPalette(),
+	"light": createLightPalette(),
+})
+
 const PUBLIC_DIR = "./public"
 const OUTPUT_DIR = "./build"
 
@@ -32,7 +37,12 @@ func generateHtml(node smetana.Node, targetName string) error {
 }
 
 func generateCss(stylesheet smetana.StyleSheet, targetName string) error {
-	css := smetana.RenderCss(stylesheet)
+	css := smetana.RenderCss(stylesheet, CONTEXT.Palettes["dark"])
+	return writeString(css, targetName)
+}
+
+func generateSitemap(sitemap smetana.Sitemap, targetName string) error {
+	css := smetana.RenderSitemap(sitemap)
 	return writeString(css, targetName)
 }
 
@@ -70,31 +80,19 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	fmt.Println("Generating palettes")
-	darkPalette := createDarkPalette()
-	lightPalette := createLightPalette()
-
 	fmt.Println("Compiling styles")
-	darkStyles, err := createStyles(darkPalette, "")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	lightStyles, err := createStyles(lightPalette, "")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	if err := generateCss(darkStyles, "css/dark.css"); err != nil {
-		log.Fatalln(err)
-	}
-	if err := generateCss(lightStyles, "css/light.css"); err != nil {
-		log.Fatalln(err)
+	CONTEXT.Styles = createStyles()
+	styles := CONTEXT.RenderStyles()
+	for name, css := range styles {
+		path := fmt.Sprintf("css/%s.css", name)
+		writeString(css, path)
 	}
 	if err := generateCss(createPrintStyles(), "css/print.css"); err != nil {
-		log.Fatalln(err)
+	log.Fatalln(err)
 	}
 
 	fmt.Println("Compiling index")
-	index := Layout(darkPalette, "", Index(articleInfo))
+	index := Layout("", Index(articleInfo))
 	if err := generateHtml(index, "index.html"); err != nil {
 		log.Fatalln(err)
 	}
@@ -105,7 +103,7 @@ func main() {
 			continue
 		}
 		fmt.Println("...", article.Name)
-		articleHtml := MdArticle(darkPalette, article)
+		articleHtml := MdArticle(article)
 		fileName := fmt.Sprintf("%s.html", article.Path)
 		if err = generateHtml(articleHtml, fileName); err != nil {
 			log.Fatalln(err)
@@ -116,12 +114,11 @@ func main() {
 	staticRoutes := []StaticRoute{
 		{"", "./index.go"},
 	}
-	locations, err := getSitemapLocations(BASE_URL, staticRoutes, articleInfo)
+	sitemap, err := getSitemap(BASE_URL, staticRoutes, articleInfo)
 	if err != nil {
 		log.Fatalln(err)
 	}
-	sitemap := Sitemap(locations)
-	if err := generateHtml(sitemap, "sitemap.xml"); err != nil {
+	if err := generateSitemap(sitemap, "sitemap.xml"); err != nil {
 		log.Fatalln(err)
 	}
 
