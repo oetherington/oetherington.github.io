@@ -106,7 +106,7 @@ func renderMarkdownFile(path string) (Node, Node, error) {
 			extension.GFM,
 			highlighting.NewHighlighting(
 				highlighting.WithFormatOptions(
-					chromahtml.WithAllClasses(true),
+					chromahtml.WithClasses(true),
 					chromahtml.WithLineNumbers(false),
 				),
 			),
