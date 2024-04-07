@@ -27,14 +27,8 @@ func Layout(title string, content Node) HtmlNode {
 				"media": "print",
 			}),
 			Link(Attrs{
-				"rel":   "stylesheet",
-				"href":  "/css/light.css",
-				"media": "screen and (prefers-color-scheme: light)",
-			}),
-			Link(Attrs{
-				"rel":   "stylesheet",
-				"href":  "/css/dark.css",
-				"media": "screen and (prefers-color-scheme: dark)",
+				"rel":  "stylesheet",
+				"href": "/css/default.css",
 			}),
 			Equiv("x-ua-compatible", "ie=edge"),
 			Title(formatTitle(title)),
@@ -74,7 +68,6 @@ func Layout(title string, content Node) HtmlNode {
 			LinkHref("manifest", "/site.webmanifest"),
 		),
 		Body(
-			Script("0"), // Prevents FOUC in Firefox
 			Div(
 				ClassName("content-full"),
 				Div(

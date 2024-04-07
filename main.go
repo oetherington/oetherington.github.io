@@ -10,8 +10,7 @@ import (
 )
 
 var CONTEXT = smetana.NewSmetanaWithPalettes(smetana.Palettes{
-	"dark":  createDarkPalette(),
-	"light": createLightPalette(),
+	"default":  createDefaultPalette(),
 })
 
 const PUBLIC_DIR = "./public"
@@ -37,7 +36,7 @@ func generateHtml(node smetana.Node, targetName string) error {
 }
 
 func generateCss(stylesheet smetana.StyleSheet, targetName string) error {
-	css := smetana.RenderCss(stylesheet, CONTEXT.Palettes["dark"])
+	css := smetana.RenderCss(stylesheet, CONTEXT.Palettes["default"])
 	return writeString(css, targetName)
 }
 
