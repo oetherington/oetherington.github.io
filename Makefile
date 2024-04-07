@@ -18,6 +18,9 @@ run:
 build:
 	go build
 
+clean:
+	rm -rf build
+
 run-built:
 	./oetherington.github.io
 
