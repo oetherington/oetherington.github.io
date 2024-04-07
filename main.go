@@ -10,7 +10,7 @@ import (
 )
 
 var CONTEXT = smetana.NewSmetanaWithPalettes(smetana.Palettes{
-	"default":  createDefaultPalette(),
+	"default": createDefaultPalette(),
 })
 
 const PUBLIC_DIR = "./public"
