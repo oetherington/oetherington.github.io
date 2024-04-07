@@ -28,11 +28,6 @@ func Index(articleInfo []ArticleInfo) FragmentNode {
 		Br(),
 		Div(
 			ClassName("content"),
-			P(`Hi. I'm a programmer currently based in Tallinn. I work at the <a href="https://www.centreforeffectivealtruism.org/">Centre for Effective Altruism</a>, primarily on the <a href="https://forum.effectivealtruism.org/">EA Forum</a>. Below you can find examples of my open-source work.`),
-		),
-		Br(),
-		Div(
-			ClassName("content"),
 			H3("Code"),
 			Projects(),
 		),
