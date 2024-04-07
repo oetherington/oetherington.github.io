@@ -71,7 +71,8 @@ func getSitemap(
 		}(i, route)
 	}
 
-	for i, article := range articles {
+	var i = 0
+	for _, article := range articles {
 		if !article.Published {
 			continue
 		}
@@ -84,6 +85,7 @@ func getSitemap(
 			errors[index] = err
 			wg.Done()
 		}(i, article)
+		i += 1
 	}
 
 	wg.Wait()
