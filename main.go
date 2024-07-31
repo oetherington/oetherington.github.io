@@ -45,7 +45,7 @@ func generateSitemap(sitemap smetana.Sitemap, targetName string) error {
 	return writeString(css, targetName)
 }
 
-const BASE_URL = "https://www.etherington.io/"
+const BASE_URL = "https://www.etherington.xyz/"
 
 func main() {
 	fmt.Println("Removing old build")

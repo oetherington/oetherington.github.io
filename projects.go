@@ -36,7 +36,7 @@ func Projects() DomNode {
 		),
 		Project(
 			"Chrd",
-			"https://www.etherington.io/chrd/",
+			"https://www.etherington.xyz/chrd/",
 			"A LaTeX inspired chord chart editor",
 			nil,
 		),
