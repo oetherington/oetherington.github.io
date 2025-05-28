@@ -90,7 +90,7 @@ func Layout(title string, content Node) HtmlNode {
 			Div(
 				ClassNames("content", "footer"),
 				P(fmt.Sprintf(
-					"Copyright &#169; 2009-%d Ollie Etherington.",
+					"Copyright &#169; %d Ollie Etherington.",
 					now.Year(),
 				)),
 				P("All content is <a href=\"https://creativecommons.org/licenses/by-nc-sa/4.0/\">CC BY-NC-SA 4.0</a> unless otherwise stated."),
