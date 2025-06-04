@@ -23,6 +23,12 @@ func Projects() DomNode {
 			nil,
 		),
 		Project(
+			"Bluesky Embed React",
+			"/bluesky-embed-react",
+			"Embed posts and feeds from Bluesky in React",
+			nil,
+		),
+		Project(
 			"Smetana",
 			"https://github.com/oetherington/smetana",
 			"An HTML and CSS generator for Go",
