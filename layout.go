@@ -108,8 +108,8 @@ func Layout(title string, content Node) HtmlNode {
 			),
 			Br(),
 			Script(Attrs{
-				"src":  "/instantpage.5.2.0.js",
-				"type": "module",
+				"src":   "/instantpage.5.2.0.js",
+				"type":  "module",
 				"defer": "true",
 			}),
 		),
