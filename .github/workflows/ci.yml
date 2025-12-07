@@ -4,6 +4,9 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+  # Redeploy at 1AM every 1st January to update copyright year in footer
+  schedule:
+    - cron: '0 1 1 1 *'
 
 jobs:
   lint:
