@@ -93,7 +93,18 @@ func Layout(title string, content Node) HtmlNode {
 					"Copyright &#169; %d Ollie Etherington.",
 					now.Year(),
 				)),
-				P("All content is <a href=\"https://creativecommons.org/licenses/by-nc-sa/4.0/\">CC BY-NC-SA 4.0</a> unless otherwise stated."),
+				P(
+					"All content is ",
+					A(
+						Attrs{
+							"href":   "https://creativecommons.org/licenses/by-nc-sa/4.0",
+							"target": "_blank",
+							"rel":    "noopener noreferrer",
+						},
+						"CC BY-NC-SA 4.0",
+					),
+					" unless otherwise stated.",
+				),
 			),
 			Br(),
 			Script(Attrs{
