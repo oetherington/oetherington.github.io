@@ -85,10 +85,7 @@ func createStyles() StyleSheet {
 		}),
 		StylesBlock(".link-icons svg", CssProps{
 			{"fill", PaletteValue("yellow")},
-			{"width", EM(1.1)},
-		}),
-		StylesBlock(".inline-icon svg", CssProps{
-			{"width", EM(1)},
+			{"width", PX(36)},
 		}),
 		StylesBlock("table", CssProps{
 			{"text-align", "left"},
