@@ -75,6 +75,7 @@ func Layout(title string, content Node) HtmlNode {
 					AHref(
 						"https://github.com/oetherington",
 						GITHUB_ICON,
+						Attr{"title", "oetherington on Github"},
 					),
 				),
 				H2(
