@@ -69,6 +69,13 @@ func createStyles() StyleSheet {
 		StylesBlock("svg", CssProps{
 			{"margin", "0 0.3em -0.2em 0.3em"},
 		}),
+		StylesBlock(".ukraine", CssProps{
+			{"display", "inline-block"},
+			{"width", PX(20)},
+			{"height", PX(14)},
+			{"transform", "translate(8px, 2px)"},
+			{"background-image", "linear-gradient(to bottom,#0057B7 0%,#0057B7 50%,#FFD700 50%,#FFD700 100%)"},
+		}),
 		StylesBlock(".link-icons", CssProps{
 			{"float", "right"},
 			{"font-size", EM(2)},

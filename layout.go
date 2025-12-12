@@ -89,6 +89,17 @@ func Layout(title string, content Node) HtmlNode {
 			content,
 			Div(
 				ClassNames("content", "footer"),
+				P(
+					A(
+						Attrs{
+							"href":   "https://u24.gov.ua/",
+							"target": "_blank",
+							"rel":    "noopener noreferrer",
+						},
+						"Donate to Ukraine",
+						Span(ClassName("ukraine")),
+					),
+				),
 				P(fmt.Sprintf(
 					"Copyright &#169; %d Ollie Etherington.",
 					now.Year(),
